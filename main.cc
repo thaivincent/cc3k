@@ -1,4 +1,7 @@
 import <fstream>;
 import <iostream>; 
 import <string>;
-import
+import <sstream>;
+import gameobject;
+import map;
+
