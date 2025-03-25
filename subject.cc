@@ -2,6 +2,7 @@ export module subject;
 import <string>;
 import <vector>;
 import info;
+
 class Observer;
 
 export class Subject{

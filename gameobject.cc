@@ -4,9 +4,9 @@ import info;
 
 
 export class GameObject: public Subject{
-    Info info;
-    GameObject * thisObj; 
+    Info info; 
 
     public:
     virtual Info getInfo() const override;
+    virtual ~GameObject() = 0;
 };
