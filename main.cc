@@ -5,3 +5,6 @@ import <sstream>;
 import gameobject;
 import map;
 
+int main{
+
+}
