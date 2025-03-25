@@ -1,7 +1,7 @@
 export module character;
 using namespace std;
 
-class Character {
+export class Character {
     private:
     int health;
     int attack;
