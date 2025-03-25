@@ -17,6 +17,4 @@ class Character {
     virtual int getHealth();
     virtual int getAttack();
     virtual int getDefense();
-    virtual int getX();
-    virtual int getY();
 };
