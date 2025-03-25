@@ -1,4 +1,5 @@
 export module gameobject;
+import subject;
 import info;
 
 
