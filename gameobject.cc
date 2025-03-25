@@ -3,6 +3,6 @@ import subject;
 import info;
 
 
-export class GameObject{
+export class GameObject: public Subject{
     Info info;
 };
