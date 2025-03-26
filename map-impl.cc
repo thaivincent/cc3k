@@ -1,19 +1,36 @@
 module map;
 import <fstream>;
-import gameobject;
+import <sstream>;
+import <string>;
 
 using namespace std;
 
-Map::reset(){}
+void Map::reset(){
+    objectList.clear();
+    return;
+}
 
 Map::Map(){
-    // Constructor
+    ifstream file{"base_map.txt"};
+    string line;
+    char c;
+    i = 0;
+    while (getline(file,line)){
+        stringstream ss(line);
+        while(ss>> c){
+            base_map[i].push_back(c)
+        }
+        i++;
+    }
+    }
 }
 
 Map::~Map(){}
 
-Map::init(){}
+void Map::init(){
 
-Map::init_state(){}
+}
+
+void Map::init_state(){}
 
 
