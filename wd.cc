@@ -1,8 +1,15 @@
 export module wd;
 
-import temppotion;
+import item;
+import decorator;
+import statuseffect;
 using namespace std;
 
-export class WD: public TempPotion {
-    
+export class WD: public Item, public Decorator {
+    int remDef = -5;
+
+    public:
+        WD(StatusEffect *statEffPtr);
+        int modAtk() override;
+        int modDef() override;
 };
