@@ -10,7 +10,7 @@ void Map::reset(){
     return;
 }
 
-Map::Map(){
+Map::Map(): {
     ifstream file{"base_map.txt"};
     string line;
     char c;
@@ -18,18 +18,16 @@ Map::Map(){
     while (getline(file,line)){
         stringstream ss(line);
         while(ss>> c){
-            base_map[i].push_back(c)
+            baseMap[i].push_back(c)
         }
         i++;
     }
-    }
+    
 }
 
 Map::~Map(){}
 
-void Map::init(){
-
-}
+void Map::init(){}
 
 void Map::init_state(){}
 

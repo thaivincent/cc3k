@@ -2,10 +2,12 @@ export module map;
 import <vector>;
 import <string>;
 import <variant>;
-import gold;
-import potion
-import human;
-import goblin;
+
+//import gold;
+//import potion
+//import human;
+//import goblin;
+
 
 using GameObject = std::variant<Gold,Potion,Human,Goblin>;
 
@@ -15,6 +17,7 @@ export class Map {
     std::vector<std::vector<char>> baseMap;
     std::vector<GameObject> objectList;
     TextDisplay * td;
+    int level = 1;
     void reset();
     void generatePlayer();
     void generateStairway();
@@ -26,7 +29,7 @@ export class Map {
     public:
         void tick();
         void init();
-        void init_state(std::vector<std::vector<GameObject>> map_state);
+        void init_state(string);
 
     
 }

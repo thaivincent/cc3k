@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
     }
     string cmd;
 
-    while (cin >> cnd){
+    while (cin >> cmd){
         if (cmd == )
     }
 }
