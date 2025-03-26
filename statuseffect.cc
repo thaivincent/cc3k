@@ -1,12 +1,11 @@
 export module statuseffect;
 
-import PC;
 using namespace std;
 
 export class StatusEffect {
   public:
-    virtual int getAtk(PC &pc);
-    virtual int getDef(PC &pc);
+    virtual int modAtk() = 0;
+    virtual int modDef() = 0;
     virtual ~StatusEffect();
 };
 

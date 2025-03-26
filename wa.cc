@@ -1,8 +1,15 @@
 export module wa;
 
-import temppotion;
+import item;
+import decorator;
+import statuseffect;
 using namespace std;
 
-export class WA: public TempPotion {
-    
+export class WA: public Item, public Decorator {
+    int remAtk = -5;
+
+    public:
+        WA(StatusEffect *statEffPtr);
+        int modAtk() override;
+        int modDef() override;
 };
