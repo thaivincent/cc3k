@@ -1,11 +1,18 @@
 export module map;
 import <vector>;
 import <string>;
-import gameobject;
+import <variant>;
+import gold;
+import potion
+import human;
+import goblin;
+
+using GameObject = std::variant<Gold,Potion,Human,Goblin>;
 
 class TextDisplay;
 
 export class Map {
+
     std::vector<std::vector<GameObject>> theMap;
     TextDisplay * td;
     void reset();
