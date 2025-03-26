@@ -1,12 +1,14 @@
 export module item;
 
+import gameobject;
 import info;
-import playablecharacter;
+import PC;
 using namespace std;
 
-export class Item {
+export class Item: public GameObject {
     int x;
     int y;
+
     public:
         virtual Info getInfo() = 0;
         virtual void onPickup() = 0;
