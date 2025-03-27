@@ -2,6 +2,7 @@ export module map;
 import <vector>;
 import <string>;
 import <variant>;
+import tile;
 
 //import gold;
 //import potion
@@ -31,5 +32,4 @@ export class Map {
         void init();
         void init_state(string file_name);
 
-    
-}
+};
