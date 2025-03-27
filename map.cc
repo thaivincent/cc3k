@@ -9,13 +9,13 @@ import <variant>;
 //import goblin;
 
 
-using GameObject = std::variant<Gold,Potion,Human,Goblin>;
+using GameObject = std::variant<Gold,Tile,Potion,Human,Goblin>;
 
 class TextDisplay;
 
 export class Map {  
     std::vector<std::vector<char>> baseMap;
-    std::vector<GameObject> objectList;
+    std::vector<std::vector<GameObject>> objectList;
     TextDisplay * td;
     int level = 1;
     void reset();

@@ -10,7 +10,7 @@ void Map::reset(){
     return;
 }
 
-Map::Map(): {
+Map::Map(): objectList{vector objectList()} {
     ifstream file{"base_map.txt"};
     string line;
     char c;
@@ -22,6 +22,8 @@ Map::Map(): {
         }
         i++;
     }
+
+
     
 }
 
