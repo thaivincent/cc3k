@@ -29,7 +29,7 @@ export class Map {
     public:
         void tick();
         void init();
-        void init_state(string);
+        void init_state(string file_name);
 
     
 }

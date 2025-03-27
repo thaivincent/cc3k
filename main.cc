@@ -8,11 +8,15 @@ int main(int argc, char* argv[]){
     if (argc == 2){
         // Takes in a command line argument for map state, interprets and conigures the game to that map state for testing.
         string file_name = argv[1];
-        ifstream file = {file_name};
+        map.init_state(file_name);
     }
-    string cmd;
+    else {map.init();}
 
+    string cmd;
     while (cin >> cmd){
-        if (cmd == )
+        if (cmd == "q"){
+            break;
+        }
+
     }
 }
