@@ -15,7 +15,7 @@ class TextDisplay;
 
 export class Map {  
     std::vector<std::vector<char>> baseMap;
-    std::vector<std::vector<GameObject>> objectList;
+    std::vector<std::vector<GameObject>> objectMap;
     TextDisplay * td;
     int level = 1;
     void reset();
