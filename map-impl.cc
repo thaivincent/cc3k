@@ -35,9 +35,9 @@ void Map::print(){
 void Map::init(){   
     // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
     objectMap.resize(30, vector<GameObject>(79));
-    
+
     // Creates a Tile object for each cell in the map
-    for (int row = 0; row < 39; row++){
+    for (int row = 0; row < 30; row++){
         for(int col = 0; col  <79; col++){
             // Create a Tile object 
             objectMap[row][col] = GameObject{Tile{row, col}};
