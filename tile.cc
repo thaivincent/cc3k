@@ -11,6 +11,10 @@ export class Tile {
     // Update will check the Tile coordinates, and refer to the basemap to see which type it should be at that x-y location.
         void update(std::vector<std::vector<char>>& basemap);
     //Ctor
+        Tile() = default;
         Tile(int x, int y);
+    //Accessors
+        int getX();
+        int getY();
 
 };

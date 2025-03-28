@@ -1,19 +1,17 @@
 export module map;
 import <memory>;
 import <vector>;
-import <string>;
 import <variant>;
+import <string>;
 import tile;
 
 //import gold;
-//import potion
+//import potion;
 //import human;
 //import goblin;
 
 
 using GameObject = std::variant<Tile>;
-
-class TextDisplay;
 
 export class Map {  
     std::vector<std::vector<char>> baseMap;
@@ -26,12 +24,18 @@ export class Map {
     void generatePotions();
     void generateGold();
     void generateEnemies();
-    void print();
+    
     
 
     public:
+    //Ctor and Dtor
+        Map();
+        ~Map();
+    
+        void print();
         void tick();
         void init();
-        void init_state(string file_name);
+        void init_state(std::string file_name);
+
 
 };

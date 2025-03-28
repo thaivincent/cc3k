@@ -2,6 +2,7 @@ import <fstream>;
 import <iostream>; 
 import <string>;
 import map;
+using namespace std;
 
 int main(int argc, char* argv[]){
     Map map;
@@ -17,6 +18,9 @@ int main(int argc, char* argv[]){
         if (cmd == "q"){
             break;
         }
-
+        else if (cmd == "p")
+        {
+            map.print();
+        }
     }
 }

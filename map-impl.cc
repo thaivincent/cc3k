@@ -4,51 +4,59 @@ import <fstream>;
 import <sstream>;
 import <string>;
 import <vector>;
+import <variant>;
 import tile;
 
 using namespace std;
+using GameObject = variant<Tile>;
 
 void Map::reset(){
     objectMap.clear();
     return;
 }
 
-void print(){
+void Map::print(){
     for (auto row: objectMap){
         for(auto obj: row){
             if(holds_alternative<Tile>(obj)){
                 // Convert to a tile
                 Tile t = get<Tile>(obj);
-                cout << baseMap[t.x][t.y];
+                cout << baseMap[t.getX()][t.getY()];
             }
             else{
                 cout<<"?";
             }
         }
+
         cout<< endl;
     }
 }
 
-void init(){   
-    objectMap.resize(79, vector<GameObject>(30));
-    for (int row = 0; row < 79; row++){
-        for(int col = 0; col  <39; col++){
+void Map::init(){   
+    // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
+    objectMap.resize(30, vector<GameObject>(79));
+    
+    // Creates a Tile object for each cell in the map
+    for (int row = 0; row < 39; row++){
+        for(int col = 0; col  <79; col++){
             // Create a Tile object 
-            objectMap.push_back(Tile{row,col});
-            objectMap[row][col].update();
+            objectMap[row][col] = GameObject{Tile{row, col}};
+            // Updates its type value to correspond with the basemap
+            get<Tile>(objectMap[row][col]).update(baseMap);
         }
     }
 }
 
 Map::Map(){
+    baseMap.resize(30, vector<char>(79));
     ifstream file{"base_map.txt"};
     string line;
     char c;
-    i = 0;
+    int i = 0;
     while (getline(file,line)){
         stringstream ss(line);
         while(ss>> c){
-            baseMap[i].push_back(c)
+            baseMap[i].push_back(c);
         }
         i++;
     }
@@ -56,15 +64,6 @@ Map::Map(){
 
 Map::~Map(){}
 
-void Map::init(){
-// I think we should initialize the map with only Tiles, since this represents the base terrain
-    for(int row = 0; row < 30; row++){
-        for(int col = 0; col < 79; col++){
-            objectMap[row].emplace_back(Tile{row,col};)
-        }
-    }
-}
-
-void Map::init_state(){}
+void Map::init_state(string file_name){}
 
 
