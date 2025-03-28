@@ -1,4 +1,5 @@
 export module map;
+import <memory>;
 import <vector>;
 import <string>;
 import <variant>;
@@ -10,14 +11,14 @@ import tile;
 //import goblin;
 
 
-using GameObject = std::variant<Gold,Tile,Potion,Human,Goblin>;
+using GameObject = std::variant<Tile>;
 
 class TextDisplay;
 
 export class Map {  
     std::vector<std::vector<char>> baseMap;
+    // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
-    TextDisplay * td;
     int level = 1;
     void reset();
     void generatePlayer();
