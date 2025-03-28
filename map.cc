@@ -25,6 +25,7 @@ export class Map {
     void generatePotions();
     void generateGold();
     void generateEnemies();
+    void print();
     
 
     public:
