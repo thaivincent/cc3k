@@ -3,6 +3,9 @@ import <vector>;
 
 using namespace std;
 
+// Since we have a default intialization of type to Null, we have to update on creation
+Tile::Tile(int x, int y): x{x}, y{y}{}
+
 void Tile::update(){
     char c = basemap[x][y];
     if (c == '|'){
