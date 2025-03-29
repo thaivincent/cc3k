@@ -7,7 +7,8 @@ import tile;
 //Added enum classes for every direction
 export enum class Direction { NORTH , SOUTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST };
 
-export class Character {
+//The character class now inherits from Map to see if they can move into a certain direction
+export class Character: public Map {
     private:
     Map* map;
     int health;
