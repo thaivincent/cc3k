@@ -15,6 +15,15 @@ void Map::reset(){
     return;
 }
 
+void Map::debug(){
+    for (auto row: baseMap){
+        for(auto c: row){
+            cout<< c;
+        }
+        cout << endl;
+    }
+}
+
 void Map::print(){
     for (auto row: objectMap){
         for(auto obj: row){
@@ -29,15 +38,6 @@ void Map::print(){
         }
 
         cout<< endl;
-    }
-}
-
-void Map::debug(){
-    for (auto row: baseMap){
-        for(auto c: row){
-            cout << c ;
-        }
-        cout <<endl;
     }
 }
 
