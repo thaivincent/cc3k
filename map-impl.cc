@@ -61,13 +61,13 @@ Map::Map(){
     ifstream file{"base_map.txt"};
     string line;
     char c;
-    int i = 0;
-    while (getline(file,line)){
+    for(int i = 0; i < 25; i++){
+        getline(file,line);
         stringstream ss(line);
-        while(ss >> std::noskipws >> c){
-            baseMap[i].push_back(c);
+        for(int j = 0; j < 79; j++){
+            ss >> std::noskipws >> c;
+            baseMap[i][j] = c;
         }
-        i++;
     }
 }
 
