@@ -6,7 +6,7 @@ using namespace std;
 // Since we have a default intialization of type to Null, we have to update on creation
 Tile::Tile(int x, int y): x{x}, y{y}{}
 
-void Tile::update(vector<vector<char>>& basemap){
+void Tile::update(const vector<vector<char>>& basemap){
     char c = basemap[x][y];
     if (c == '|'){
         t = TileType::VWall;

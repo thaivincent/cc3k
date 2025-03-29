@@ -15,7 +15,7 @@ void Map::reset(){
     return;
 }
 
-void Map::print(){
+void Map::print() const {
     for (auto row: objectMap){
         for(auto obj: row){
             if(holds_alternative<Tile>(obj)){
