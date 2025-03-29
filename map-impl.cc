@@ -33,22 +33,13 @@ void Map::print() const {
     }
 }
 
-void Map::printBase() {
-    for (auto &row: baseMap) {
-        for (auto &col: row) {
-            cout << col;
-        }
-        cout << endl;
-    }
-}
-
 void Map::init(){   
     // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
-    objectMap.resize(30, vector<GameObject>(79));
+    objectMap.resize(numRows, vector<GameObject>(numCols));
 
     // Creates a Tile object for each cell in the map
-    for (int row = 0; row < 30; row++){
-        for(int col = 0; col  <79; col++){
+    for (int row = 0; row < numRows; row++){
+        for(int col = 0; col < numCols; col++){
             // Create a Tile object 
             objectMap[row][col] = GameObject{Tile{row, col}};
             // Updates its type value to correspond with the basemap
@@ -58,14 +49,14 @@ void Map::init(){
 }
 
 Map::Map(){
-    baseMap.resize(30, vector<char>(79));
+    baseMap.resize(numRows, vector<char>(numCols));
     ifstream file{"base_map.txt"};
     string line;
     char c;
-    for(int i = 0; i < 25; i++){
+    for(int i = 0; i < numRows; i++){
         getline(file,line);
         stringstream ss(line);
-        for(int j = 0; j < 79; j++){
+        for(int j = 0; j < numCols; j++){
             ss >> std::noskipws >> c;
             baseMap[i][j] = c;
         }

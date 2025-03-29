@@ -14,7 +14,9 @@ import tile;
 
 using GameObject = std::variant<Tile>;
 
-export class Map {  
+export class Map {
+    const static int numRows = 30;
+    const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
     // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
@@ -37,6 +39,4 @@ export class Map {
         void tick();
         void init();
         void init_state(std::string file_name);
-
-        void printBase();
 };
