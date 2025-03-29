@@ -33,7 +33,7 @@ export class Map {
         Map();
         ~Map();
     
-        void print();
+        void print() const;
         void tick();
         void init();
         void init_state(std::string file_name);
