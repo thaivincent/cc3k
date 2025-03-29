@@ -23,5 +23,8 @@ int main(int argc, char* argv[]){
             map.printBase();
             map.print();
         }
+        else if (cmd == "d"){
+            map.debug();
+        }
     }
 }

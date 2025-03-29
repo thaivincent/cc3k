@@ -15,6 +15,15 @@ void Map::reset(){
     return;
 }
 
+void Map::debug(){
+    for (auto row: baseMap){
+        for(auto c: row){
+            cout<< c;
+        }
+        cout << endl;
+    }
+}
+
 void Map::print() const {
     for (auto row: objectMap){
         for(auto obj: row){
