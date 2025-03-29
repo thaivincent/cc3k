@@ -36,6 +36,6 @@ export class Map {
         void tick();
         void init();
         void init_state(std::string file_name);
-
+        void debug();
 
 };

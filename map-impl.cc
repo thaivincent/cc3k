@@ -32,6 +32,15 @@ void Map::print(){
     }
 }
 
+void Map::debug(){
+    for (auto row: baseMap){
+        for(auto c: row){
+            cout << c ;
+        }
+        cout <<endl;
+    }
+}
+
 void Map::init(){   
     // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
     objectMap.resize(30, vector<GameObject>(79));
