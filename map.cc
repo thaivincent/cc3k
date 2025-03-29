@@ -2,4 +2,39 @@ export module map;
 import <fstream>;
 import <vector>;
 import <string>;
-import gameobject;
+import tile;
+
+//import gold;
+//import potion;
+//import human;
+//import goblin;
+
+
+using GameObject = std::variant<Tile>;
+
+export class Map {  
+    std::vector<std::vector<char>> baseMap;
+    // 2D vector of smart pointers
+    std::vector<std::vector<GameObject>> objectMap;
+    int level = 1;
+    void reset();
+    void generatePlayer();
+    void generateStairway();
+    void generatePotions();
+    void generateGold();
+    void generateEnemies();
+    
+    
+
+    public:
+    //Ctor and Dtor
+        Map();
+        ~Map(); 
+        void debug();
+        void print();
+        void tick();
+        void init();
+        void init_state(std::string file_name);
+
+
+};
