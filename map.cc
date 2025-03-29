@@ -37,5 +37,7 @@ export class Map {
         void init();
         void init_state(std::string file_name);
 
+        void printBase();
+
 
 };

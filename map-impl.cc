@@ -32,6 +32,15 @@ void Map::print(){
     }
 }
 
+void Map::printBase() {
+    for (auto &row: baseMap) {
+        for (auto &col: row) {
+            cout << col;
+        }
+        cout << endl;
+    }
+}
+
 void Map::init(){   
     // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
     objectMap.resize(30, vector<GameObject>(79));
@@ -55,7 +64,7 @@ Map::Map(){
     int i = 0;
     while (getline(file,line)){
         stringstream ss(line);
-        while(ss>> c){
+        while(ss >> std::noskipws >> c){
             baseMap[i].push_back(c);
         }
         i++;

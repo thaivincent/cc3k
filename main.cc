@@ -20,6 +20,7 @@ int main(int argc, char* argv[]){
         }
         else if (cmd == "p")
         {
+            map.printBase();
             map.print();
         }
     }
