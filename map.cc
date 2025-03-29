@@ -5,6 +5,7 @@ import <variant>;
 import <string>;
 import tile;
 
+
 //import gold;
 //import potion;
 //import human;
@@ -38,6 +39,4 @@ export class Map {
         void init_state(std::string file_name);
 
         void printBase();
-
-
 };
