@@ -6,8 +6,7 @@ import PC;
 using namespace std;
 
 export class Item {
-    int x;
-    int y;
+    Info info;
 
     public:
         virtual Info getInfo() = 0;
