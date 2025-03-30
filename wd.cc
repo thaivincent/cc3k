@@ -6,7 +6,7 @@ import statuseffect;
 using namespace std;
 
 export class WD: public Item, public Decorator {
-    int remDef = -5;
+    static const int remDef = -5;
 
     public:
         WD(StatusEffect *statEffPtr);
