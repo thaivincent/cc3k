@@ -26,8 +26,8 @@ export class Map {
     void reset();
     // For our generation functions, each one except generatePlayer will take in a vector containing all of the valid coordinates of a particular room 
     //  and insert the appropriate item inside of the objectMap
-    void generatePlayer();
-    void generateStairway(std::vector<std::vector<Info>>& room);
+    void generatePlayer(string class);
+    void generateStairway(std::vector<std::vector<Info>>& room); // Have to pass in rooms with player room removed
     void generatePotions(std::vector<std::vector<Info>>& room);
     void generateGold(std::vector<std::vector<Info>>& room);
     void generateEnemies(std::vector<std::vector<Info>>& room);
