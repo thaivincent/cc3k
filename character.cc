@@ -9,7 +9,7 @@ export enum class Direction { NORTH , SOUTH, WEST, EAST, SOUTHEAST, SOUTHWEST, N
 
 //The character class now inherits from Map to see if they can move into a certain direction
 export class Character: public Map {
-    private:
+    protected:
     Map* map;
     int health;
     int attack;
