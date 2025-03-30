@@ -1,8 +1,9 @@
 module ba;
 
-import item;
+import potion;
 import decorator;
 import statuseffect;
+import PC;
 using namespace std;
 
 BA::BA(StatusEffect *statEffPtr): next{statEffPtr} {}
@@ -13,4 +14,9 @@ int BA::modAtk() {
 
 int BA::modDef() {
     return addAtk + next->modDef();
+}
+
+StatusEffect* BA::applyPotion(PC *pc) {
+    PC *affectedPc = new BA{pc};
+    return affectedPC;
 }

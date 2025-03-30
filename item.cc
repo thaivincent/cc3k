@@ -1,6 +1,6 @@
 export module item;
 
-import gameobject;
+//import gameobject;
 import info;
 import PC;
 using namespace std;
