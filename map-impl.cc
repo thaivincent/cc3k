@@ -67,11 +67,11 @@ vector<vector<Info>>& generateUnique(unique_ptr<PC> pc){
 }
 
 vector<vector<Info>>& generatePotions(vector<vector<Info>>& rooms){
-    const static int MAX_FLOOR_POTIONS = 10;
+    const static int MAX_FLOOR_ITEMS = 10;
     template <typename T> 
-    T generatePotion(string type){
+    T generatePotion(string type, Info info){
         if (type == "RH"){
-            
+            return RH{info}
         }
     }
 
