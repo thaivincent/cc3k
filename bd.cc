@@ -6,7 +6,7 @@ import statuseffect;
 using namespace std;
 
 export class BD: public Item, public Decorator {
-    int addDef = 5;
+    static const int addDef = 5;
 
     public:
         BD(StatusEffect *statEffPtr);
