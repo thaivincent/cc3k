@@ -6,7 +6,7 @@ export enum class TileType {VWall, HWall, Floor, Hallway, Null, Door};
 
 export class Tile {
     TileType t = TileType::Null;
-    int x,y;
+    Info info;
     public:
     // Update will check the Tile coordinates, and refer to the basemap to see which type it should be at that x-y location.
         void update(const std::vector<std::vector<char>>& basemap);
