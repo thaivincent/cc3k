@@ -10,6 +10,7 @@ export class BA: public Potion, public Decorator {
     static const int addAtk = 5;
 
     public:
+        BA(int x, int y);
         BA(StatusEffect *statEffPtr);
         int modAtk() override;
         int modDef() override;

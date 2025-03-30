@@ -6,6 +6,8 @@ import statuseffect;
 import PC;
 using namespace std;
 
+BA::BA(int x, int y): info{x, y}, next{nullptr} {}
+
 BA::BA(StatusEffect *statEffPtr): next{statEffPtr} {}
 
 int BA::modAtk() {
