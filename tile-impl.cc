@@ -4,10 +4,10 @@ import <vector>;
 using namespace std;
 
 // Since we have a default intialization of type to Null, we have to update on creation
-Tile::Tile(int x, int y): info{x,y};
+Tile::Tile(int x, int y): info{x,y}{}
 
 void Tile::update(const vector<vector<char>>& basemap){
-    char c = basemap[x][y];
+    char c = basemap[info.x][info.y];
     if (c == '|'){
         t = TileType::VWall;
     }

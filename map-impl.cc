@@ -30,36 +30,45 @@ vector<vector<Info>> Map::defaultRooms(){
 
     // Break up each room into rectangular regions
 
-    const Region R0 = {3,3,6,28};
+    Region R0 = {3,3,6,28};
 
-    const Region R1_1  = {3,39,4,61};
-    const Region R1_2 = {5,39,5,70};
-    const Region R1_3 = {6,39,6,73};
-    const Region R1_4 = {7,61,12,76};
+    Region R1_1  = {3,39,4,61};
+    Region R1_2 = {5,39,5,70};
+    Region R1_3 = {6,39,6,73};
+    Region R1_4 = {7,61,12,76};
 
-    const Region R4_2 = {10,38,13,50};
+    Region R2 = {10,38,13,50};
 
-    const Region R3 = {15,4,21,25};
+    Region R3 = {15,4,21,25};
 
-    const Region R4_1 = {16,65,18,76};
-    const Region R4_2 = {19,37,21,76};
+    Region R4_1 = {16,65,18,76};
+    Region R4_2 = {19,37,21,76};
 
-    vector<vector<Info>> roomList(5);
-    roomList[0] = R0.makeRoom();
+    vector<vector<Info>> roomList;
+    roomList.push_back(R0.makeRoom());
 
     vector<Info> room1 = R1_1.makeRoom();
-    room1.insert(room1.end(), R1_2.makeRoom().begin(), R1_2.makeRoom().end());
-    room1.insert(room1.end(), R1_3.makeRoom().begin(), R1_3.makeRoom().end());
-    room1.insert(room1.end(), R1_4.makeRoom().begin(), R1_4.makeRoom().end());
-    roomList[1] = room1;
+    for (auto i: R1_2.makeRoom()){
+        room1.push_back(i);
+    }
+    for (auto i: R1_3.makeRoom()){
+        room1.push_back(i);
+    }
+    for (auto i: R1_4.makeRoom()){
+        room1.push_back(i);
+    }
+   
+    roomList.push_back(room1);
 
-    roomList[2] = R2.makeRoom();
+    roomList.push_back( R2.makeRoom());
 
-    roomList[3] = R3.makeRoom();
+    roomList.push_back( R3.makeRoom());
 
     vector<Info> room4 = R4_1.makeRoom();
-    room4.insert(room4.end(),R4_2.makeRoom().begin(), R4_2.makeRoom().end());
-    roomList[4] = room4;
+    for (auto i: R4_2.makeRoom()){
+        room4.push_back(i);
+    }
+    roomList.push_back(room4);
 
     return roomList;
 }
@@ -82,6 +91,12 @@ void Map::print() const {
 }
 
 void Map::debug(){
+    vector<vector<Info>> rooms = defaultRooms();
+    for (auto room: rooms){
+        for(auto i : room){
+            cout << i;
+        }
+    }
 }
 
 void Map::init(){   

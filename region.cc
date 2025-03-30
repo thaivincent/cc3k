@@ -1,9 +1,9 @@
 export module region;
 import <vector>;
-import <Info>;
+import info;
 
-struct Region {
-    int x_start,y_start,x_end,y_end;
+export struct Region {
+    int start_x,start_y,end_x,end_y;
 
     std::vector<Info> makeRoom();
-}
+};
