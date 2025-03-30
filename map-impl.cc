@@ -41,7 +41,10 @@ Info Map::coordSelect(vector<Info> room){
 // Generation functions
 
 void generatePlayer(){
-    
+    vector<vector<Info>> rooms = defaultRooms();
+    vector<Info> room = roomSelect(rooms);
+    Info playerCoord = coordSelect(room);
+
 }
 
 void Map::print() const {
@@ -62,7 +65,7 @@ void Map::print() const {
 }
 
 void Map::debug(){
-    vector<vector<Info>> rooms = defaultRooms();
+    
     vector<Info> room = roomSelect(rooms);
     Info coord = coordSelect(room);
     cout << coord;
