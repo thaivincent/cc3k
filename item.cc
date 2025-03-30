@@ -6,8 +6,7 @@ import PC;
 using namespace std;
 
 export class Item: public GameObject {
-    int x;
-    int y;
+    Info info;
 
     public:
         virtual Info getInfo() = 0;

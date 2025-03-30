@@ -15,8 +15,7 @@ export class Character: public Map {
     int attack;
     int defense;
     int gold;
-    int x;
-    int y;
+    Info info;
 
     public:
     virtual void move( Direction Dir );
