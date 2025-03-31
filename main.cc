@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
     cout << "Select a class:" << endl << "h = Human" << endl << "d = Dwarf" << endl << "e = Elf" << endl << "o = Orc"<< endl;
     cin >> cmd;
     if (cmd == "h"){
-        cout<< "Human selected";
+        // Create and insert human into 
     }
 
     while (cin >> cmd){
