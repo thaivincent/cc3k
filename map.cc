@@ -18,7 +18,7 @@ import item;
 import goblin;
 
 
-using GameObject = std::variant<std::monostate, Tile, Human, Item, Goblin>;
+export using GameObject = std::variant<Tile, Human, Item, Goblin>;
 
 export class Map {
     const static int numRows = 25;

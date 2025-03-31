@@ -18,7 +18,6 @@ import item;
 import goblin;
 
 using namespace std;
-using GameObject = variant<monostate, Tile, Human, Item, Goblin>;
 
 void Map::reset(){
     objectMap.clear();
@@ -133,22 +132,8 @@ GameObject Map::convertType(char c, int x, int y) {
         case 'B':
             return GameObject{Item{x, y}};
             break;
-        case '|':
-            return GameObject{Tile{x, y}}
-            break;
-        case '.':
-            return GameObject{Tile{x, y}}
-            break;
-        case '-':
-            return GameObject{Tile{x, y}}
-            break;
-        case '+':
-            return GameObject{Tile{x, y}}
-            break;
-        case '#':
-            return GameObject{Tile{x, y}}
-            break;
     }
+    return GameObject{Tile{x, y}};
 }
 
 void Map::init_state(string file_name){
@@ -172,8 +157,10 @@ void Map::init_state(string file_name){
                 }
             }
             else if(holds_alternative<Tile>(objectMap[i][j]) ){
-                Tile t = get<Tile>(objectMap[i][j]);
-                t.update();
+                auto& obj = objectMap[i][j];
+                if (auto* tile = std::get_if<Tile>(&obj)) {
+                    tile->update(baseMap);
+                }
             }
         }
     }

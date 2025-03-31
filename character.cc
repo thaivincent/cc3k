@@ -19,12 +19,11 @@ export class Character {
     Info getInfo();
     void set_map(Map* mp);
     void set_info(const Info& i);
-    virtual void move( Direction Dir );
-    virtual void attack( Direction Dir );
-    virtual int getHealth();
-    virtual int getAttack();
-    virtual int getDefense();
-    virtual ~Character();
+    void move( Direction Dir );
+    void attack( Direction Dir );
+    int getHealth();
+    int getAttack();
+    int getDefense();
     
     void setGold(int g);
     void setAtk(int atk);
