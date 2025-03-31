@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
         string file_name = argv[1];
         map.init_state(file_name);
     }
-    else {map.init();}
+    else {cout<< "error, should init by RNG" << endl;}
 
     string cmd;
     cout << "Select a class:" << endl << "h = Human" << endl << "d = Dwarf" << endl << "e = Elf" << endl << "o = Orc"<< endl;
@@ -20,7 +20,6 @@ int main(int argc, char* argv[]){
         cout << "Human Selected" << endl;
     }
     
-    map.generate();
 
     while (cin >> cmd){
         if (cmd == "q"){
