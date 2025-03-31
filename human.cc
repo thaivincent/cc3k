@@ -10,5 +10,7 @@ export class Human: public PC {
     Human(int x, int y);
     
     void incGold(Gold g) override;
+    void useStairs()
+    ~Human();
     
 };
