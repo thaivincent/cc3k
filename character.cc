@@ -12,8 +12,7 @@ export class Character {
     int attack_stat;
     int defense_stat;
     int gold;
-    int x;
-    int y;
+    Info info;
     Map* map;
 
     public:

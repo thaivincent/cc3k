@@ -6,7 +6,7 @@ void Character::set_map(Map* mp) {
 }
 
 Character::Character(int hp, int atk, int def, int g, int x, int y): 
-        health_stat(hp), attack_stat(atk), defense_stat(def), gold(g), x(x), y(y) {}
+        health_stat(hp), attack_stat(atk), defense_stat(def), gold(g), info{x,y} {}
 
 int Character::getHealth() {
     return health_stat;
@@ -29,7 +29,7 @@ void Character::attack(Direction Dir) {
 }
 
 Info Character::getInfo() {
-    return Info{x,y};
+    return info;
 }
 
 Character::~Character() {}
