@@ -25,6 +25,11 @@ int main(int argc, char* argv[]){
         else if(cmd == "d"){
             map.debug();
         }
+        else if (cmd== "")
+        {
+            /* code */
+        }
+        
 
     }
 }
