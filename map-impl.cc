@@ -15,9 +15,10 @@ import character;
 import playablecharacter;
 import human;
 import item;
+import goblin;
 
 using namespace std;
-using GameObject = variant<monostate, Tile, PC, Item, Enemy>;
+using GameObject = variant<monostate, Tile, Human, Item, Goblin>;
 
 void Map::reset(){
     objectMap.clear();
@@ -41,67 +42,6 @@ Info Map::coordSelect(vector<Info> room){
     return coord;
 }
 
-// Generation functions
-
-
-// Generates the stair and PC
-void Map::generate(){
-    vector<vector<Info>> rooms = defaultRooms();
-    vector<Info> PC_room = roomSelect(rooms);
-    // Temporarily pop PC_room from room list
-    rooms.pop_back();
-    // Select a new room from the room list with PC_room removed
-    vector<Info> s_room = rooms.back();
-
-    // Pop 2 coordinates from the 2 selected rooms
-    Info s_coord = coordSelect(s_room);
-    Info PC_coord = coordSelect(PC_room);
-    GameObject pc {Human{PC_coord.x,PC_coord.y}};
-    
-    // Push back PC_room to room list.
-    rooms.push_back(PC_room); 
-    
-    
-    objectMap[PC_coord.x][PC_coord.y] = pc;
-
-    // Create a Stair GameObject and insert into gameMap:
-        //To-do:
-
-    const static int MAX_FLOOR_ITEMS = 10;
-    const static int MAX_FLOOR_GOLD = 10;
-    const static int MAX_FLOOR_ENEMY = 20;
-    // vector<string> potList = {"RH", "BA", "BD", "PH", "WA", "WD"};
-    for (int i = 0; i < MAX_FLOOR_ITEMS; i++){
-        /*
-        // Randomize and create a random potion
-        shuffle(potList.begin(), potList.end(),rng);
-        string potion = potList.back();
-        */
-        vector<Info> potRoom = roomSelect(rooms);
-        Info potCoords = coordSelect(potRoom);
-        
-        objectMap[potCoords.x][potCoords.y] = GameObject{Item{potCoords}};
-        
-    }
-
-    for (int i = 0; i < MAX_FLOOR_GOLD; i++){
-        vector<Info> goldRoom = roomSelect(rooms);
-        Info goldCoords = coordSelect(goldRoom);
-        objectMap[goldCoords.x][goldCoords.y] = GameObject{Item{goldCoords}};
-        
-    }
-    
-    /*
-    for (int i = 0; i < MAX_FLOOR_ENEMY; i++){
-        vector<Info> enemyRoom = roomSelect(rooms);
-        Info enemyCoords = coordSelect(enemyRoom);
-        gameMap[enemyCoords.x][enemyCoords.y] = GameObject{Enemy{enemyCoords}};
-        
-    }
-    */
-
-
-}
 
 void Map::print() const {
     for (auto row: objectMap){
@@ -111,13 +51,16 @@ void Map::print() const {
                 Tile t = get<Tile>(obj);
                 cout << baseMap[t.getX()][t.getY()];
             }
-            else if (holds_alternative<PC>(obj))
+            else if (holds_alternative<Human>(obj))
             {
                 cout << "@";
             }
             else if (holds_alternative<Item>(obj))
             {
                 cout<< "I";
+            }
+            else if (holds_alternative<Goblin>(obj)) {
+                cout << "E";
             }
             else{
                 cout<<"?";
@@ -131,22 +74,6 @@ void Map::print() const {
 void Map::debug(){
 }
 
-void Map::init(){   
-    // Resizes the vector to accomodate the 30 rows and 79 cols of the game 
-    objectMap.resize(numRows, vector<GameObject>(numCols));
-
-    // Creates a Tile object for each cell in the map
-    for (int row = 0; row < numRows; row++){
-        for(int col = 0; col < numCols; col++){
-            // Create a Tile object 
-            objectMap[row][col] = GameObject{Tile{row, col}};
-            // Updates its type value to correspond with the basemap
-            get<Tile>(objectMap[row][col]).update(baseMap);
-        }
-    }
-
-
-}
 
 Map::Map(){
     //Initialize map with a time-based seed
@@ -168,8 +95,60 @@ Map::Map(){
 
 Map::~Map(){}
 
-void Map::incLevel() {
-    ++level;
+GameObject Map::convertType(char c, int x, int y) {
+    switch(c) {
+        case '@':
+            return GameObject{Human{x, y}};
+            break;
+        case 'V':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'W':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'M':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'N':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'D':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'X':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'T':
+            return GameObject{Goblin{x, y}};
+            break;
+        case 'P':
+            return GameObject{Item{x, y}};
+            break;
+        case 'G':
+            return GameObject{Item{x, y}};
+            break;
+        case 'C':
+            return GameObject{Item{x, y}};
+            break;
+        case 'B':
+            return GameObject{Item{x, y}};
+            break;
+        case '|':
+            return GameObject{Tile{x, y}}
+            break;
+        case '.':
+            return GameObject{Tile{x, y}}
+            break;
+        case '-':
+            return GameObject{Tile{x, y}}
+            break;
+        case '+':
+            return GameObject{Tile{x, y}}
+            break;
+        case '#':
+            return GameObject{Tile{x, y}}
+            break;
+    }
 }
 
 void Map::init_state(string file_name){
@@ -185,82 +164,18 @@ void Map::init_state(string file_name){
         for(int j = 0; j < numCols; j++){
             ss >> std::noskipws >> c;
             baseMap[i][j] = c;
-            objectMap[i][j] = *(convertType(c, i, j));
+            objectMap[i][j] = convertType(c, i, j);
             if (baseMap[i][j] == '@') {
-                pc = &(objectMap[i][j]);
+                auto& obj = objectMap[i][j];
+                if (auto* human = std::get_if<Human>(&obj)) {
+                    pc = human;
+                }
             }
-        }
-    }
-    int stat;
-    for (int i = 0; i < 4; ++i) {
-        file >> stat;
-        if (i == 0) {
-            pc->setGold(stat);
-        }
-        else (if i == 1) {
-            pc->setHP(stat);
-        }
-        else (if i == 2) {
-            pc->setAtk(stat);
-        }
-        else (if i == 2) {
-            pc->setDef(stat);
+            else if(holds_alternative<Tile>(objectMap[i][j]) ){
+                Tile t = get<Tile>(objectMap[i][j]);
+                t.update();
+            }
         }
     }
 }
 
-GameObject Map::convertType(char c, int x, int y) {
-    switch(c) {
-        case '@':
-            return  new GameObject{PC{x, y}};
-            break;
-        case 'V':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'W':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'M':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'N':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'D':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'X':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'T':
-            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
-            break;
-        case 'P':
-            return new GameObject{Item{x, y}};
-            break;
-        case 'G':
-            return new GameObject{Item{x, y}};
-            break;
-        case 'C':
-            return new GameObject{Item{x, y}};
-            break;
-        case 'B':
-            return new GameObject{Item{x, y}};
-            break;
-        case '|':
-            return new GameObject{Tile{x, y, c}}
-            break;
-        case '.':
-            return new GameObject{Tile{x, y, c}}
-            break;
-        case '-':
-            return new GameObject{Tile{x, y, c}}
-            break;
-        case '+':
-            return new GameObject{Tile{x, y, c}}
-            break;
-        case '#':
-            return new GameObject{Tile{x, y, c}}
-            break;
-    }
-}

@@ -8,20 +8,17 @@ import <variant>;
 import <algorithm>;
 import <random>;
 import <chrono>;
+import info;
+import character;
 import playablecharacter;
 import enemy;
 import tile;
-import info;
-import region;
+import human;
 import item;
-
-//import gold;
-//import potion;
-//import human;
-//import goblin;
+import goblin;
 
 
-using GameObject = std::variant<std::monostate, Tile, PC, Item, Enemy>;
+using GameObject = std::variant<std::monostate, Tile, Human, Item, Goblin>;
 
 export class Map {
     const static int numRows = 25;
@@ -31,8 +28,7 @@ export class Map {
     std::vector<std::vector<GameObject>> objectMap;
     int level = 1;
     unsigned seed;
-
-    PC *pc;
+    Human *pc;
 
     // For our generation functions, each one except generatePlayer will take in a vector containing all of the valid coordinates of a particular room 
     //  and insert the appropriate item inside of the objectMap
@@ -54,17 +50,15 @@ export class Map {
     //Ctor and Dtor
         Map();
         ~Map();
-        void generate();
         void print() const;
         void tick();
+        GameObject convertType(char c, int x, int y);
         void init_state(std::string file_name);
 
         void debug();
 
-        public:
-            void incLevel();
-            void reset();
-            void init();
+        void reset();
+        void init();
 
-            GameObject convertType(char c, int x, int y);
+
 };
