@@ -18,6 +18,8 @@ int main(int argc, char* argv[]){
     cin >> cmd;
     if (cmd == "h"){
         cout << "Human Selected" << endl;
+    }else{
+        cout << "Class not ready" << endl;
     }
     
 
