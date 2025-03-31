@@ -20,7 +20,7 @@ import item;
 //import goblin;
 
 
-using GameObject = std::variant<Tile,PC, Item>;
+using GameObject = std::variant<Tile, PC, Item, Enemy, Stairs>;
 
 export class Map {
     const static int numRows = 25;

@@ -17,7 +17,7 @@ import human;
 import item;
 
 using namespace std;
-using GameObject = variant<Tile, PC, Item>;
+using GameObject = variant<Tile, PC, Item, Enemy, Stairs>;
 
 void Map::reset(){
     objectMap.clear();
@@ -46,8 +46,6 @@ Info Map::coordSelect(vector<Info> room){
 
 // Generates the stair and PC
 void Map::generate(){
-    
-
     vector<vector<Info>> rooms = defaultRooms();
     vector<Info> PC_room = roomSelect(rooms);
     // Temporarily pop PC_room from room list
@@ -121,8 +119,6 @@ void Map::print() const {
             {
                 cout<< "I";
             }
-            
-            
             else{
                 cout<<"?";
             }
