@@ -30,8 +30,8 @@ using namespace std;
 export using GameObject = std::variant<Tile, Human, Item, Goblin>;
 
 export class Map {
-    PC* main_character;
-    std::vector<Enemy*> enemies;
+    Human* main_character;
+    std::vector<Goblin*> enemies;
     const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;

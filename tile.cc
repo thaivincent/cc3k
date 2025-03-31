@@ -20,5 +20,5 @@ export class Tile {
         void modX(int x);
         void modY(int y);
         TileType getTileType();
-
+        
 };
