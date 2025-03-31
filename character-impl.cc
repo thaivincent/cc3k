@@ -1,4 +1,7 @@
 module character;
+import directions;
+import tile;
+
 using namespace std;
 
 void Character::set_map(Map* mp) {
@@ -21,7 +24,19 @@ int Character::getDefense() {
 }
 
 void Character::move(Direction Dir) {
-    return;
+    if(Dir == 0){
+        if (holds_alternative<Tile>(map.gameMap[info.x][info.y + 1])){
+            Tile t = get<Tile>(map.gameMap[info.x][info.y + 1]);
+            if (t.type == 2){
+                swap(map.gameMap[info.x][info.y + 1],map.gameMap[info.x][info.y]);
+            }
+        }
+    }
+    else if (Dir == 1)
+    {
+        /* code */
+    }
+    
 }
 
 void Character::attack(Direction Dir) {
