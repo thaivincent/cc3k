@@ -17,6 +17,8 @@ export class Tile {
     //Accessors
         int getX();
         int getY();
+        void modX(int x);
+        void modY(int y);
         TileType getTileType();
 
 };

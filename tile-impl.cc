@@ -42,3 +42,9 @@ int Tile::getY(){
 TileType Tile::getTileType() {
     return t;
 }
+void Tile::modX(int x){
+    info.x = x;
+}
+void Tile::modY(int y){
+    info.y = y;
+}
