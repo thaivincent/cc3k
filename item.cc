@@ -7,6 +7,6 @@ export class Item {
     int y;
 
     public:
-        virtual Info getInfo() = 0;
-        virtual void onPickup() = 0;
+        virtual Info getInfo();
+        virtual void onPickup();
 };

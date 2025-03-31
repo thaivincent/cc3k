@@ -11,11 +11,14 @@ import <chrono>;
 import tile;
 import info;
 import region;
+import character;
+import playablecharacter;
+import human;
 
 //import gold;
 //import potion;
-//import human;
-//import goblin;
+
+
 
 
 using GameObject = std::variant<Tile, Human, Stairs,Items, Enemy>;
@@ -24,8 +27,8 @@ export class Map {
     const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
-    // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
+    Human pc;
     int level = 1;
 
     public:

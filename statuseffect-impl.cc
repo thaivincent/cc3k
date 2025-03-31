@@ -1,3 +1,0 @@
-module statuseffect;
-
-StatusEffect::~StatusEffect() {}
