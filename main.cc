@@ -68,6 +68,14 @@ int main(int argc, char* argv[]){
         {
             cin >> cmd;
             switch(cmd){
+                case("no"): map.
+                case("so"):
+                case("ea"):
+                case("we"):
+                case("ne"):
+                case("nw"):
+                case("se"):
+                case("sw"):
                 
             }
 
