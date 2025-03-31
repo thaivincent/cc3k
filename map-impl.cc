@@ -77,7 +77,7 @@ Map::Map(){
 Map::~Map(){}
 
 Human* Map::getPC(){
-    return pc;
+    return main_character;
 }
 
 
@@ -233,10 +233,13 @@ bool Map::isWalkable(Direction Dir, Info info) {
             break;
     }
 
-    if (get<Tile>(objectMap[info.x][info.y]).getTileType() == TileType::VWall) {
+    if (info.x < 0 || info.x >= numRows || info.y < 0 || info.y >= numCols) {
         return false;
     }
-    if (get<Tile>(objectMap[info.x][info.y]).getTileType() == TileType::HWall) {
+
+    Tile tile = get<Tile>(objectMap[info.x][info.y]);
+    if (tile.getTileType() == TileType::VWall ||
+        tile.getTileType() == TileType::HWall) {
         return false;
     } 
 
@@ -256,10 +259,26 @@ bool Map::isWalkable(Direction Dir, Info info) {
 }
 
 void Map::movePlayer(Direction Dir) {
-    if (isWalkable(Dir, main_character->getInfo())) {
-        main_character->move(Dir);
+    if (!main_character) {
+        cerr << "Error: main_character is not initialized." << endl;
+        return;
+    }
 
-        
+    if (isWalkable(Dir, main_character->getInfo())) {
+        Info temp = main_character->getInfo();
+        main_character->move(Dir);
+        Info new_pos = main_character->getInfo();
+
+        if(new_pos.x < 0 || new_pos.x >= numRows || new_pos.y < 0 || new_pos.y >= numCols) {
+            return;
+        }
+
+        swap(objectMap[temp.x][temp.y], objectMap[new_pos.x][new_pos.y]);
+        Tile t = get<Tile>(objectMap[temp.x][temp.y]);
+        t.modX(temp.x);
+        t.modY(temp.y);
+        t.update(baseMap);
+
     }
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
@@ -270,7 +289,19 @@ void Map::movePlayer(Direction Dir) {
         } else {
             Direction dir = randomDirection();
             if (isWalkable(dir, enemies[i]->getInfo())) {
+                Info temp_2 = enemies[i]->getInfo();
                 enemies[i]->move(dir);
+                Info new_pos2 = enemies[i]->getInfo();
+
+                if(new_pos2.x < 0 || new_pos2.x >= numRows || new_pos2.y < 0 || new_pos2.y >= numCols) {
+                    return;
+                }
+
+                swap(objectMap[temp_2.x][temp_2.y], objectMap[new_pos2.x][new_pos2.y]);
+                Tile b = get<Tile>(objectMap[temp_2.x][temp_2.y]);
+                b.modX(temp_2.x);
+                b.modY(temp_2.y);
+                b.update(baseMap);
             }
         }
     }
@@ -326,6 +357,7 @@ void Map::findEnemy(Direction Dir, Info info) {
             break;
     }
 
+
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
         if (enemies[i]->getInfo().x == temp.x && enemies[i]->getInfo().y == temp.y) {
             enemies[i]->setHealth(enemies[i]->getHealth() - main_character->getAttack());
@@ -334,6 +366,10 @@ void Map::findEnemy(Direction Dir, Info info) {
 }
 
 void Map::playerAttack(Direction Dir) {
+    if (!main_character) {
+        cerr << "Error: main_character is not initialized." << endl;
+        return;
+    }
     findEnemy(Dir, main_character->getInfo());
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
@@ -344,10 +380,21 @@ void Map::playerAttack(Direction Dir) {
         } else {
             Direction dir = randomDirection();
             if (isWalkable(dir, enemies[i]->getInfo())) {
+                Info temp_2 = enemies[i]->getInfo();
                 enemies[i]->move(dir);
+                Info new_pos2 = enemies[i]->getInfo();
+
+                if(new_pos2.x < 0 || new_pos2.x >= numRows || new_pos2.y < 0 || new_pos2.y >= numCols) {
+                    return;
+                }
+
+                swap(objectMap[temp_2.x][temp_2.y], objectMap[new_pos2.x][new_pos2.y]);
+                Tile b = get<Tile>(objectMap[temp_2.x][temp_2.y]);
+                b.modX(temp_2.x);
+                b.modY(temp_2.y);
+                b.update(baseMap);
             }
         }
-        
     }
 }
 
