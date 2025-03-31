@@ -5,15 +5,13 @@ using namespace std;
 
 class Map;
 
-//The character class now inherits from Map to see if they can move into a certain direction
 export class Character {
     private:
     int health_stat;
     int attack_stat;
     int defense_stat;
     int gold;
-    int x;
-    int y;
+    Info info;
     Map* map;
 
     public:
