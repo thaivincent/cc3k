@@ -70,9 +70,11 @@ export class Map {
         Human* getPC();
         void reset();
         void init();
+        void updateMap();
 
 
         void incLevel();
+        
         bool playerInRange(Info info);
         Direction findDirection(Info info);
         bool isWalkable(Direction Dir, Info info);

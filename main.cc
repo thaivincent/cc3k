@@ -23,45 +23,46 @@ int main(int argc, char* argv[]){
         }else if(cmd == "d"){
             map.debug();
         }else if (cmd == "no"){
-            map.getPC()->move(Direction::NORTH);
+            map.movePlayer(Direction::NORTH);
         }else if (cmd == "so"){
-            map.getPC()->move(Direction::SOUTH);
+            map.movePlayer(Direction::SOUTH);
         }else if (cmd == "ea"){
-            map.getPC()->move(Direction::EAST);
+            map.movePlayer(Direction::EAST);
         }else if (cmd == "we"){
-            map.getPC()->move(Direction::WEST);
+            map.movePlayer(Direction::WEST);
         }else if (cmd == "ne"){
-            map.getPC()->move(Direction::NORTHEAST);
+            map.movePlayer(Direction::NORTHEAST);
         }else if (cmd == "nw"){
-            map.getPC()->move(Direction::NORTHWEST);
+            map.movePlayer(Direction::NORTHWEST);
         }else if (cmd == "se"){
-            map.getPC()->move(Direction::SOUTHEAST);
+            map.movePlayer(Direction::SOUTHEAST);
         }else if (cmd == "sw"){
-            map.getPC()->move(Direction::SOUTHWEST);
+            map.movePlayer(Direction::SOUTHWEST);
         }
         
         else if (cmd == "a"){
             cin >> cmd;
             if (cmd == "no") {
-                map.getPC()->attack(Direction::NORTH);
+                map.playerAttack(Direction::NORTH);
             } else if (cmd == "so") {
-                map.getPC()->attack(Direction::SOUTH);
+                map.playerAttack(Direction::SOUTH);
             } else if (cmd == "ea") {
-                map.getPC()->attack(Direction::EAST);
+                map.playerAttack(Direction::EAST);
             } else if (cmd == "we") {
-                map.getPC()->attack(Direction::WEST);
+                map.playerAttack(Direction::WEST);
             } else if (cmd == "ne") {
-                map.getPC()->attack(Direction::NORTHEAST);  
+                map.playerAttack(Direction::NORTHEAST);  
             } else if (cmd == "nw") {
-                map.getPC()->attack(Direction::NORTHWEST);  
+                map.playerAttack(Direction::NORTHWEST);  
             } else if (cmd == "se") {
-                map.getPC()->attack(Direction::SOUTHEAST);
+                map.playerAttack(Direction::SOUTHEAST);
             } else if (cmd == "sw") {
-                map.getPC()->attack(Direction::SOUTHWEST);
+                map.playerAttack(Direction::SOUTHWEST);
             } else {
                 // Handle invalid input
                 std::cout << "Invalid direction!" << std::endl;
             }
+            map.print()
 
         }
         else if (cmd == "no")
@@ -129,8 +130,5 @@ int main(int argc, char* argv[]){
         else{
             cout<< "Command unknown, try again" << endl;
         }
-        
-        
-
     }
 }

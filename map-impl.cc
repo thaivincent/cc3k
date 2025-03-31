@@ -80,6 +80,8 @@ Human* Map::getPC(){
     return pc;
 }
 
+
+
 GameObject Map::convertType(char c, int x, int y) {
     switch(c) {
         case '@':
@@ -120,6 +122,10 @@ GameObject Map::convertType(char c, int x, int y) {
             break;
     }
     return GameObject{Tile{x, y}};
+}
+
+void Map::updateMap() {
+
 }
 
 void Map::init_state(string file_name){
@@ -267,7 +273,6 @@ void Map::movePlayer(Direction Dir) {
                 enemies[i]->move(dir);
             }
         }
-        
     }
 }
 
@@ -345,3 +350,4 @@ void Map::playerAttack(Direction Dir) {
         
     }
 }
+
