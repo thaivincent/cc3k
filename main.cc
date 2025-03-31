@@ -14,6 +14,9 @@ int main(int argc, char* argv[]){
     else {map.init();}
 
     string cmd;
+    cout << 
+    cin >> cmd;
+
     while (cin >> cmd){
         if (cmd == "q"){
             break;
