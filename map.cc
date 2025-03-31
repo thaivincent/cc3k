@@ -27,20 +27,6 @@ export class Map {
     // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
     int level = 1;
-    unsigned seed;
-    // For our generation functions, each one except generatePlayer will take in a vector containing all of the valid coordinates of a particular room 
-    //  and insert the appropriate item inside of the objectMap
-    void generatePlayer();
-    void generateStairway(std::vector<std::vector<Info>>& room);
-    void generatePotions(std::vector<std::vector<Info>>& room);
-    void generateGold(std::vector<std::vector<Info>>& room);
-    void generateEnemies(std::vector<std::vector<Info>>& room);
-
-    // Helpers:
-    // Takes in a vector of rooms/coordinates, pops a random element and returns
-    std::vector<Info> roomSelect(std::vector<std::vector<Info>>& rooms);
-    Info coordSelect(std::vector<Info> room);
-
 
     public:
     //Ctor and Dtor
@@ -54,8 +40,8 @@ export class Map {
 
         void debug();
 
-        public:
-            void incLevel();
-            void reset();
-            void init();
+       
+        void incLevel();
+        void reset();
+        void init();
 };
