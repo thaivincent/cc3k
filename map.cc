@@ -11,7 +11,12 @@ import <chrono>;
 import tile;
 import info;
 import region;
-import PC;
+import playablecharacter;
+import enemy;
+import directions;
+import item;
+using namespace std;
+
 
 //import gold;
 //import potion;
@@ -22,6 +27,8 @@ import PC;
 using GameObject = std::variant<Tile>;
 
 export class Map {
+    PC* main_character;
+    std::vector<Enemy*> enemies;
     const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
@@ -59,4 +66,7 @@ export class Map {
             void incLevel();
             void reset();
             void init();
+            bool isWalkable(Direction Dir, Info info);
+            void movePlayer(Direction Dir);
+            
 };

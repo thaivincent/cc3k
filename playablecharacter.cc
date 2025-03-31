@@ -2,6 +2,7 @@ export module playablecharacter;
 import character;
 import gold;
 import statuseffect;
+import directions;
 using namespace std;
 
 

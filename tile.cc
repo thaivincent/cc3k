@@ -16,5 +16,6 @@ export class Tile {
     //Accessors
         int getX();
         int getY();
+        TileType getTileType();
 
 };

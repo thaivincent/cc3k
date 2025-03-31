@@ -1,4 +1,5 @@
 module map;
+import directions;
 
 using namespace std;
 using GameObject = variant<Tile>;
@@ -124,10 +125,74 @@ Map::~Map(){}
 
 void Map::init_state(string file_name){}
 
-<<<<<<< HEAD
-=======
 void Map::incLevel() {
     ++level;
 }
 
->>>>>>> compiled_code_1
+bool Map::isWalkable(Direction Dir, Info info) {
+    switch(Dir){
+        case Direction::NORTH:
+            info.y++;
+            break;
+        case Direction::SOUTH:
+            info.y--;
+            break;
+        case Direction::WEST:
+            info.x--;
+            break;
+        case Direction::EAST:
+            info.x++;
+            break;
+        case Direction::SOUTHWEST:
+            info.y--;
+            info.x--;
+            break;
+        case Direction::SOUTHEAST:
+            info.y--;
+            info.x++;
+            break;
+        case Direction::NORTHWEST:
+            info.y++;
+            info.x--;
+            break;
+        case Direction::NORTHEAST:
+            info.y++;
+            info.x++;
+            break;
+    }
+
+    if (get<Tile>(objectMap[info.x][info.y]).getTileType() == TileType::VWall) {
+        return false;
+    }
+    if (get<Tile>(objectMap[info.x][info.y]).getTileType() == TileType::HWall) {
+        return false;
+    } 
+
+    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+        if (enemies[i]->getInfo().x == info.x && enemies[i]->getInfo().y == info.y) {
+            return false;
+        }
+    }
+
+    if (info.x == main_character->getInfo().x && info.y == main_character->getInfo().y) {
+        return false;
+    }
+
+    return true;
+
+
+}
+
+void Map::movePlayer(Direction Dir) {
+    if (isWalkable(Dir, main_character->getInfo())) {
+        main_character->move(Dir);
+    }
+
+    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+        Direction dir = randomDirection();
+        if (isWalkable(dir, enemies[i]->getInfo())) {
+            enemies[i]->move(dir);
+        }
+    }
+}
+
