@@ -11,6 +11,7 @@ import <chrono>;
 import tile;
 import info;
 import region;
+import PC;
 
 //import gold;
 //import potion;
