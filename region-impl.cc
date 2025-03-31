@@ -22,19 +22,19 @@ vector<vector<Info>> defaultRooms(){
 
     // Break up each room into rectangular regions
 
-    Region R0 = {3,3,6,28};
+    Region R0 = {3,4,6,28};
 
     Region R1_1  = {3,39,4,61};
-    Region R1_2 = {5,39,5,70};
-    Region R1_3 = {6,39,6,73};
-    Region R1_4 = {7,61,12,76};
+    Region R1_2 = {5,39,6,70};
+    Region R1_3 = {6,39,7,73};
+    Region R1_4 = {7,61,13,76};
 
     Region R2 = {10,38,13,50};
 
-    Region R3 = {15,4,21,25};
+    Region R3 = {15,4,22,25};
 
-    Region R4_1 = {16,65,18,76};
-    Region R4_2 = {19,37,21,76};
+    Region R4_1 = {16,65,19,75};
+    Region R4_2 = {19,37,22,75};
 
     vector<vector<Info>> roomList;
     roomList.push_back(R0.makeRoom());
