@@ -5,13 +5,12 @@ import <variant>;
 import <string>;
 import tile;
 import info;
-import PC;
-import human;
+//import PC;
+//import human;
 
 
 //import gold;
 //import potion;
-//import human;
 //import goblin;
 
 
@@ -23,14 +22,14 @@ export class Map {
     std::vector<std::vector<char>> baseMap;
     // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
-    unique_ptr<GameObject> PCptr; 
+    std::unique_ptr<GameObject> PCptr; 
     int level = 1;
     unsigned seed;
 
     void reset();
     // For our generation functions, we first generate the PC and stairs which have to be in seperate rooms, and then handle the item and enemy generation.
-    std::vector<std::vector<Info>>& generateUnique(PC& pc);
-    void generatePotions(room);
+    //std::vector<std::vector<Info>>& generateUnique(PC& pc);
+    void generatePotions(std::vector<std::vector<Info>>& room);
     void generateGold(std::vector<std::vector<Info>>& room);
     void generateEnemies(std::vector<std::vector<Info>>& room);
 

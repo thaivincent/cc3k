@@ -11,7 +11,7 @@ import <chrono>;
 import tile;
 import info;
 import region;
-import PC;
+//import PC;
 
 using namespace std;
 using GameObject = variant<Tile>;
@@ -40,8 +40,9 @@ Info Map::coordSelect(vector<Info> room){
 
 // Generation functions
 
+/*
 // Generates the stair and PC
-vector<vector<Info>>& generateUnique(unique_ptr<PC> pc){
+vector<vector<Info>>& Map::generateUnique(unique_ptr<PC> pc){
     vector<vector<Info>> rooms = defaultRooms();
     vector<Info> PC_room = roomSelect(rooms);
     // Temporarily pop PC_room from room list
@@ -61,22 +62,17 @@ vector<vector<Info>>& generateUnique(unique_ptr<PC> pc){
     gameMap[PC_coord.x][PC_coord.y] = std::move(*pc);
 
     // Create a Stair GameObject and insert into gameMap:
-        /* code */
+        
 
     return &rooms;
 }
 
-vector<vector<Info>>& generatePotions(vector<vector<Info>>& rooms){
+vector<vector<Info>>& Map::generatePotions(vector<vector<Info>>& rooms){
     const static int MAX_FLOOR_ITEMS = 10;
-    template <typename T> 
-    T generatePotion(string type, Info info){
-        if (type == "RH"){
-            return RH{info}
-        }
-    }
 
 
 }
+    */
 
 void Map::print() const {
     for (auto row: objectMap){
@@ -96,7 +92,7 @@ void Map::print() const {
 }
 
 void Map::debug(){
-    
+    vector<vector<Info>> rooms = defaultRooms();
     vector<Info> room = roomSelect(rooms);
     Info coord = coordSelect(room);
     cout << coord;
