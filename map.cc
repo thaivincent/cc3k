@@ -29,13 +29,8 @@ export class Map {
     int level = 1;
     unsigned seed;
     void reset();
-    // For our generation functions, each one except generatePlayer will take in a vector containing all of the valid coordinates of a particular room 
-    //  and insert the appropriate item inside of the objectMap
-    void generatePlayer();
-    void generateStairway(std::vector<std::vector<Info>>& room);
-    void generatePotions(std::vector<std::vector<Info>>& room);
-    void generateGold(std::vector<std::vector<Info>>& room);
-    void generateEnemies(std::vector<std::vector<Info>>& room);
+    // For our generation functions, will procedurely generate characters, stairs, items, and enemies in that order
+    void generate(PC pc);
 
     // Helpers:
     // Takes in a vector of rooms/coordinates, pops a random element and returns
