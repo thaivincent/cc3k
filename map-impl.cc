@@ -1,6 +1,19 @@
 module map;
-using namespace std;
+import <iostream>;
+import <fstream>;
+import <sstream>;
+import <string>;
+import <vector>;
+import <variant>;
+import <algorithm>;
+import <random>;
+import <chrono>;
+import tile;
+import info;
+import region;
+//import PC;
 
+using namespace std;
 using GameObject = variant<Tile>;
 
 void Map::reset(){
@@ -14,7 +27,6 @@ vector<Info> Map::roomSelect(vector<vector<Info>>& rooms){
     default_random_engine rng{seed};
     shuffle(rooms.begin(),rooms.end(),rng);
     vector<Info> room = rooms.back();
-    rooms.pop_back();
     return room;
 }
 
@@ -22,15 +34,45 @@ Info Map::coordSelect(vector<Info> room){
     default_random_engine rng{seed};
     shuffle(room.begin(),room.end(),rng);
     Info coord = room.back();
-    room.pop_back();
+    room.pop_back(); // Removes this coordinate from the list so that subsequent calls cannot return the same coordinate
     return coord;
 }
 
 // Generation functions
 
-void generatePlayer(){
+/*
+// Generates the stair and PC
+vector<vector<Info>>& Map::generateUnique(unique_ptr<PC> pc){
+    vector<vector<Info>> rooms = defaultRooms();
+    vector<Info> PC_room = roomSelect(rooms);
+    // Temporarily pop PC_room from room list
+    rooms.pop_back();
+    // Select a new room from the room list with PC_room removed
+    vector<Info> s_room = rooms.back();
+
+    // Pop 2 coordinates from the 2 selected rooms
+    Info s_coord = coordSelect(s_room);
+    Info PC_coord = coordSelect(PC_room);
+
+    // Push back PC_room to room list.
+    rooms.push_back(PC_room); 
     
+    
+    // Transfers ownership to the gameMap
+    gameMap[PC_coord.x][PC_coord.y] = std::move(*pc);
+
+    // Create a Stair GameObject and insert into gameMap:
+        
+
+    return &rooms;
 }
+
+vector<vector<Info>>& Map::generatePotions(vector<vector<Info>>& rooms){
+    const static int MAX_FLOOR_ITEMS = 10;
+
+
+}
+    */
 
 void Map::print() const {
     for (auto row: objectMap){
