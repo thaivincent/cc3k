@@ -240,7 +240,9 @@ void Map::movePlayer(Direction Dir) {
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
         if (playerInRange(enemies[i]->getInfo())) {
-            enemies[i]->attack(findDirection(enemies[i]->getInfo()));
+            if (attackRandomizer()) {
+                main_character->setHealth(main_character->getHealth() - enemies[i]->getAttack());
+            }
         } else {
             Direction dir = randomDirection();
             if (isWalkable(dir, enemies[i]->getInfo())) {
@@ -309,7 +311,7 @@ void Map::findEnemy(Direction Dir, Info info) {
 }
 
 void Map::playerAttack(Direction Dir) {
-    main_character->attack(Dir);
+    findEnemy(Dir, main_character->getInfo());
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
         if (playerInRange(enemies[i]->getInfo())) {
@@ -325,4 +327,3 @@ void Map::playerAttack(Direction Dir) {
         
     }
 }
-
