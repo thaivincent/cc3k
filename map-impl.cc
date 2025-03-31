@@ -113,6 +113,16 @@ void Map::print() const {
                 Tile t = get<Tile>(obj);
                 cout << baseMap[t.getX()][t.getY()];
             }
+            else if (holds_alternative<PC>(obj))
+            {
+                cout << "@";
+            }
+            else if (holds_alternative<Item>(obj))
+            {
+                cout<< "I";
+            }
+            
+            
             else{
                 cout<<"?";
             }
