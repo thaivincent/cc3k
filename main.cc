@@ -25,6 +25,60 @@ int main(int argc, char* argv[]){
         else if(cmd == "d"){
             map.debug();
         }
+        else if (cmd == "no")
+        {
+            /* code */
+        }
+        else if (cmd == "so")
+        {
+            /* code */
+        }
+        
+        else if (cmd == "ea")
+        {
+            /* code */
+        }
+
+        else if (cmd == "we")
+        {
+            /* code */
+        }
+        
+        else if (cmd == "ne")
+        {
+            /* code */
+        }
+    
+        else if (cmd == "nw")
+        {
+            /* code */
+        }
+        
+        else if (cmd == "se")
+        {
+            /* code */
+        }
+        
+        else if (cmd == "sw")
+        {
+            /* code */
+        }
+        
+        else if (cmd == "a")
+        {
+            cin >> cmd;
+            switch(cmd){
+                
+            }
+
+        }
+        
+        else if (cmd == "no")
+        {
+            /* code */
+        }
+        
+        
 
     }
 }
