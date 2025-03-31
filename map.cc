@@ -24,7 +24,7 @@ using namespace std;
 //import goblin;
 
 
-using GameObject = std::variant<Tile, Human, Stairs,Items, Enemy>;
+using GameObject = std::variant<Tile>;
 
 export class Map {
     PC* main_character;
@@ -66,8 +66,12 @@ export class Map {
             void incLevel();
             void reset();
             void init();
+            bool playerInRange(Info info);
+            Direction findDirection(Info info);
             bool isWalkable(Direction Dir, Info info);
+            void findEnemy(Direction Dir, Info info);
             void movePlayer(Direction Dir);
+            bool attackRandomizer();
             void playerAttack(Direction Dir);
             
 };

@@ -66,18 +66,19 @@ int main(int argc, char* argv[]){
         
         else if (cmd == "a")
         {
-            cin >> cmd;
-            switch(cmd){
-                case("no"): map.
-                case("so"):
-                case("ea"):
-                case("we"):
-                case("ne"):
-                case("nw"):
-                case("se"):
-                case("sw"):
+            // cin >> cmd;
+            // switch(cmd){
+            //     case("no"): map.
+            //     case("so"):
+            //     case("ea"):
+            //     case("we"):
+            //     case("ne"):
+            //     case("nw"):
+            //     case("se"):
+            //     case("sw"):
                 
-            }
+            // }
+            cout << "";
 
         }
         

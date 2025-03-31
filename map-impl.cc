@@ -2,7 +2,7 @@ module map;
 import directions;
 
 using namespace std;
-using GameObject = variant<Tile, Human, Stairs,Items, Enemy>;
+using GameObject = variant<Tile>;
 
 void Map::reset(){
     objectMap.clear();
@@ -134,6 +134,51 @@ void Map::incLevel() {
     ++level;
 }
 
+bool Map::playerInRange(Info info) {
+    if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y + 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y - 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y - 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y + 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x == info.x && main_character->getInfo().y - 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y == info.y) {
+        return true;
+    } else if (main_character->getInfo().x == info.x && main_character->getInfo().y + 1 == info.y) {
+        return true;
+    } else if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y == info.y) {
+        return true;
+    }
+
+    return false;
+}
+
+Direction Map::findDirection(Info info) {
+    if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y + 1 == info.y) {
+        return Direction::NORTHEAST;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y - 1 == info.y) {
+        return Direction::SOUTHWEST;
+    } else if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y - 1 == info.y) {
+        return Direction::SOUTHEAST;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y + 1 == info.y) {
+        return Direction::NORTHWEST;
+    } else if (main_character->getInfo().x == info.x && main_character->getInfo().y - 1 == info.y) {
+        return Direction::SOUTH;
+    } else if (main_character->getInfo().x - 1 == info.x && main_character->getInfo().y == info.y) {
+        return Direction::WEST;
+    } else if (main_character->getInfo().x == info.x && main_character->getInfo().y + 1 == info.y) {
+        return Direction::NORTH;
+    } else if (main_character->getInfo().x + 1 == info.x && main_character->getInfo().y == info.y) {
+        return Direction::EAST;
+    }
+
+    return Direction::NORTH;
+}
+
+
 bool Map::isWalkable(Direction Dir, Info info) {
     switch(Dir){
         case Direction::NORTH:
@@ -194,11 +239,90 @@ void Map::movePlayer(Direction Dir) {
     }
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
-        Direction dir = randomDirection();
-        if (isWalkable(dir, enemies[i]->getInfo())) {
-            enemies[i]->move(dir);
+        if (playerInRange(enemies[i]->getInfo())) {
+            enemies[i]->attack(findDirection(enemies[i]->getInfo()));
+        } else {
+            Direction dir = randomDirection();
+            if (isWalkable(dir, enemies[i]->getInfo())) {
+                enemies[i]->move(dir);
+            }
+        }
+        
+    }
+}
+
+bool Map::attackRandomizer() {
+    static mt19937   
+    generator(chrono::steady_clock::now().time_since_epoch().count());
+    static uniform_int_distribution<int> distribution(1, 2);
+    int rand = distribution(generator);
+
+    switch(rand) {
+        case 1:
+            return false;
+        case 2:
+            return true;
+    }
+
+    return true;
+}
+
+void Map::findEnemy(Direction Dir, Info info) {
+    Info temp = info;
+
+    switch(Dir) {
+        case Direction::NORTH:
+            temp.y++;
+            break;
+        case Direction::SOUTH:
+            temp.y--;
+            break;
+        case Direction::WEST:
+            temp.x--;
+            break;
+        case Direction::EAST:
+            temp.x++;
+            break;
+        case Direction::SOUTHWEST:
+            temp.y--;
+            temp.x--;
+            break;
+        case Direction::SOUTHEAST:
+            temp.y--;
+            temp.x++;
+            break;
+        case Direction::NORTHWEST:
+            temp.y++;
+            temp.x--;
+            break;
+        case Direction::NORTHEAST:
+            temp.y++;
+            temp.x++;
+            break;
+    }
+
+    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+        if (enemies[i]->getInfo().x == temp.x && enemies[i]->getInfo().y == temp.y) {
+            enemies[i]->setHealth(enemies[i]->getHealth() - main_character->getAttack());
         }
     }
 }
 
+void Map::playerAttack(Direction Dir) {
+    main_character->attack(Dir);
+
+    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+        if (playerInRange(enemies[i]->getInfo())) {
+            if (attackRandomizer()) {
+                main_character->setHealth(main_character->getHealth() - enemies[i]->getAttack());
+            }
+        } else {
+            Direction dir = randomDirection();
+            if (isWalkable(dir, enemies[i]->getInfo())) {
+                enemies[i]->move(dir);
+            }
+        }
+        
+    }
+}
 
