@@ -4,6 +4,10 @@ using namespace std;
 Character::Character(int hp, int atk, int def, int g, int x, int y): 
         health_stat(hp), attack_stat(atk), defense_stat(def), gold(g), info{x,y} {}
 
+int Character::setHealth(int hp) {
+    health_stat = hp;
+}
+
 int Character::getHealth() {
     return health_stat;
 }

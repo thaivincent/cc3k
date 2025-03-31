@@ -178,9 +178,6 @@ Direction Map::findDirection(Info info) {
     return Direction::NORTH;
 }
 
-Info Map::attackDirection(Direction Dir) {
-    if ()
-}
 
 bool Map::isWalkable(Direction Dir, Info info) {
     switch(Dir){
@@ -254,14 +251,78 @@ void Map::movePlayer(Direction Dir) {
     }
 }
 
+bool Map::attackRandomizer() {
+    static mt19937   
+    generator(chrono::steady_clock::now().time_since_epoch().count());
+    static uniform_int_distribution<int> distribution(1, 2);
+    int rand = distribution(generator);
+
+    switch(rand) {
+        case 1:
+            return false;
+        case 2:
+            return true;
+    }
+
+    return true;
+}
+
+void Map::findEnemy(Direction Dir, Info info) {
+    Info temp = info;
+
+    switch(Dir) {
+        case Direction::NORTH:
+            temp.y++;
+            break;
+        case Direction::SOUTH:
+            temp.y--;
+            break;
+        case Direction::WEST:
+            temp.x--;
+            break;
+        case Direction::EAST:
+            temp.x++;
+            break;
+        case Direction::SOUTHWEST:
+            temp.y--;
+            temp.x--;
+            break;
+        case Direction::SOUTHEAST:
+            temp.y--;
+            temp.x++;
+            break;
+        case Direction::NORTHWEST:
+            temp.y++;
+            temp.x--;
+            break;
+        case Direction::NORTHEAST:
+            temp.y++;
+            temp.x++;
+            break;
+    }
+
+    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+        if (enemies[i]->getInfo().x == temp.x && enemies[i]->getInfo().y == temp.y) {
+            enemies[i]->setHealth(enemies[i]->getHealth() - main_character->getAttack());
+        }
+    }
+}
+
 void Map::playerAttack(Direction Dir) {
     main_character->attack(Dir);
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
-        Direction dir = randomDirection();
-        if (isWalkable(dir, enemies[i]->getInfo())) {
-            enemies[i]->move(dir);
+        if (playerInRange(enemies[i]->getInfo())) {
+            if (attackRandomizer()) {
+                main_character->setHealth(main_character->getHealth() - enemies[i]->getAttack());
+            }
+        } else {
+            Direction dir = randomDirection();
+            if (isWalkable(dir, enemies[i]->getInfo())) {
+                enemies[i]->move(dir);
+            }
         }
+        
     }
 }
 
