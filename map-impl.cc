@@ -201,14 +201,4 @@ void Map::movePlayer(Direction Dir) {
     }
 }
 
-void Map::playerAttack(Direction Dir) {
-    main_character->attack(Dir);
-
-    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
-        Direction dir = randomDirection();
-        if (isWalkable(dir, enemies[i]->getInfo())) {
-            enemies[i]->move(dir);
-        }
-    }
-}
 
