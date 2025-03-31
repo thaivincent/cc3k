@@ -6,8 +6,6 @@ export class Merchant: public Enemy {
     bool isHostile;
 
     public:
-    Merchant(int x, int y): 
-        health(30), attack(70), defense(5), gold(0), 
-        x(x), y(y), wasMoved(false), hasCompass(false), isHostile(false) {}
-
-}
+    Merchant(int x, int y):
+        Enemy(30, 70, 5, 0, x, y), isHostile(false) {}
+};

@@ -1,9 +1,9 @@
 export module textdisplay;
-
-import <cstddef>
+import <cstddef>;
 import <iostream>;
 import <vector>;
 import observer;
+import subject;
 
 class GameObject;
 

@@ -1,16 +1,12 @@
 module bd;
-
-import item;
-import decorator;
-import statuseffect;
 using namespace std;
 
-BD::BD(StatusEffect *statEffPtr): next{statEffPtr} {}
+BD::BD() {}
 
 int BD::modAtk() {
-    return addDef + next->modAtk();
+    return 0;
 }
 
 int BD::modDef() {
-    return addDef + next->modDef();
+    return addDef;
 }

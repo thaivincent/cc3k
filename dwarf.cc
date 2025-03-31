@@ -4,5 +4,5 @@ import playablecharacter;
 export class Dwarf: public PC {
     public:
     Dwarf(int x, int y): 
-        health(100), attack(20), defense(30), gold(0), x(x), y(y), hasBS(false) {}
-}
+        PC(100, 20, 30, 0, x, y) {}
+};

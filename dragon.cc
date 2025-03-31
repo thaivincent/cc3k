@@ -6,11 +6,8 @@ export class Dragon: public Enemy {
     bool hasBS;
     bool isHostile;
 
-    
     public:
-    Dragon(int x, int y): 
-        health(150), attack(20), defense(20), gold(0), x(x), y(y), 
-        wasMoved(false), hasCompass(false), isHostile(false), hasBS(false) {}
-}
+    Dragon(int x, int y):
+        Enemy(150, 20, 20, 0, x, y), hasBS(false), isHostile(false) {}
+};
 
-}

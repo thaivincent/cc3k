@@ -1,18 +1,6 @@
 module map;
-import <iostream>;
-import <fstream>;
-import <sstream>;
-import <string>;
-import <vector>;
-import <variant>;
-import <algorithm>;
-import <random>;
-import <chrono>;
-import tile;
-import info;
-import region;
-
 using namespace std;
+
 using GameObject = variant<Tile>;
 
 void Map::reset(){

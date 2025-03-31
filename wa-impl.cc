@@ -1,16 +1,12 @@
 module wa;
-
-import item;
-import decorator;
-import statuseffect;
 using namespace std;
 
-WA::WA(StatusEffect *statEffPtr): next{statEffPtr} {}
+WA::WA() {}
 
 int WA::modAtk() {
-    return remAtk + next->modAtk();
+    return remAtk;
 }
 
 int WA::modDef() {
-    return remAtk + next->modDef();
+    return 0;
 }

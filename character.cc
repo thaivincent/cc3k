@@ -1,28 +1,30 @@
 export module character;
+import info;
+import directions;
 using namespace std;
-import map;
-import tile;
 
-
-//Added enum classes for every direction
-export enum class Direction { NORTH , SOUTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST };
+class Map;
 
 //The character class now inherits from Map to see if they can move into a certain direction
-export class Character: public Map {
+export class Character {
     private:
-    Map* map;
-    int health;
-    int attack;
-    int defense;
+    int health_stat;
+    int attack_stat;
+    int defense_stat;
     int gold;
     int x;
     int y;
+    Map* map;
 
     public:
+    Character(int hp, int atk, int def, int g, int x, int y);
+    Info getInfo();
+    void set_map(Map* mp);
     virtual void move( Direction Dir );
-    virtual void attack( Enemy &e );
-    virtual Info getInfo() const = 0;
+    virtual void attack( Direction Dir );
     virtual int getHealth();
     virtual int getAttack();
     virtual int getDefense();
+    virtual ~Character();
+    
 };

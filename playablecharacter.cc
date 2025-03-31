@@ -1,19 +1,18 @@
-export module PC;
+export module playablecharacter;
 import character;
 import gold;
 import statuseffect;
 using namespace std;
 
 
-export class PC: public Character, public StatusEffect {
+export class PC: public Character {
     private:
     bool hasBS;
 
     public:
-    virtual void useLoot(Loot l);
-    virtual void incGold(Gold g);
-
-    // for temp potion modifications
-    int modAtk() override;
-    int modDef() override;
-}
+    PC(int hp, int atk, int def, int g, int x, int y): 
+        Character(hp, atk, def, g, x, y), hasBS(false) {}
+    virtual void useLoot() = 0;
+    virtual void incGold(Gold g) = 0;
+   
+};

@@ -1,5 +1,4 @@
 module info;
-import <iostream>;
 
 using namespace std;
 

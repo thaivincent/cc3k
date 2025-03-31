@@ -1,8 +1,7 @@
 export module observer;
+import subject;
 
-class Subject;
-
-class Observer{
+export class Observer{
     public:
     virtual void notify( Subject & whoNotified ) = 0; 
     virtual ~Observer() = default;

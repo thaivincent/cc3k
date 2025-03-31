@@ -1,11 +1,8 @@
 export module item;
-
-import gameobject;
 import info;
-import PC;
 using namespace std;
 
-export class Item: public GameObject {
+export class Item {
     int x;
     int y;
 

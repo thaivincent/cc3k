@@ -1,16 +1,14 @@
 module ba;
 
-import item;
-import decorator;
-import statuseffect;
+
 using namespace std;
 
-BA::BA(StatusEffect *statEffPtr): next{statEffPtr} {}
+BA::BA() {}
 
 int BA::modAtk() {
-    return addAtk + next->modAtk();
+    return addAtk;
 }
 
 int BA::modDef() {
-    return addAtk + next->modDef();
+    return 0;
 }

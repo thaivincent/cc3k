@@ -1,16 +1,12 @@
 module wd;
-
-import item;
-import decorator;
-import statuseffect;
 using namespace std;
 
-WD::WD(StatusEffect *statEffPtr): next{statEffPtr} {}
+WD::WD() {}
 
 int WD::modAtk() {
-    return remDef + next->modAtk();
+    return 0;
 }
 
 int WD::modDef() {
-    return remDef + next->modDef();
+    return remDef;
 }

@@ -1,11 +1,16 @@
 export module map;
-import <memory>;
+import <iostream>;
+import <fstream>;
+import <sstream>;
+import <string>;
 import <vector>;
 import <variant>;
-import <string>;
+import <algorithm>;
+import <random>;
+import <chrono>;
 import tile;
 import info;
-
+import region;
 
 //import gold;
 //import potion;

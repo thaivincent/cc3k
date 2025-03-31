@@ -1,15 +1,14 @@
 export module wd;
 
 import item;
-import decorator;
 import statuseffect;
 using namespace std;
 
-export class WD: public Item, public Decorator {
+export class WD: public Item, public StatusEffect {
     static const int remDef = -5;
 
     public:
-        WD(StatusEffect *statEffPtr);
+        WD();
         int modAtk() override;
         int modDef() override;
 };

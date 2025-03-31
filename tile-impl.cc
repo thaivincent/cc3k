@@ -1,5 +1,4 @@
 module tile;
-import <vector>;
 
 using namespace std;
 

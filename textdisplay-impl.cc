@@ -1,7 +1,6 @@
-module textdisplay
+module textdisplay;
+import info;
 using namespace std;
-
-import subject;
 
 // makes a text display of an empty map (only floors)
 TextDisplay::TextDisplay( size_t n ) {

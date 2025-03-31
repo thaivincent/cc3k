@@ -1,15 +1,14 @@
 export module bd;
 
 import item;
-import decorator;
 import statuseffect;
 using namespace std;
 
-export class BD: public Item, public Decorator {
+export class BD: public Item, public StatusEffect {
     static const int addDef = 5;
 
     public:
-        BD(StatusEffect *statEffPtr);
+        BD();
         int modAtk() override;
         int modDef() override;
 };

@@ -1,8 +1,4 @@
 module region;
-import <vector>;
-import <stdexcept>;
-import<iostream>;
-import info;
 using namespace std;
 
 // Generates all coordinates in the given region
