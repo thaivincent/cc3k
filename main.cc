@@ -14,8 +14,11 @@ int main(int argc, char* argv[]){
     else {map.init();}
 
     string cmd;
-    cout << 
+    cout << "Select a class:" << endl << "h = Human" << endl << "d = Dwarf" << endl << "e = Elf" << endl << "o = Orc"<< endl;
     cin >> cmd;
+    if (cmd == "h"){
+        cout<< "Human selected";
+    }
 
     while (cin >> cmd){
         if (cmd == "q"){
