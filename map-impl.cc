@@ -94,6 +94,10 @@ Map::Map(){
 
 Map::~Map(){}
 
+Human* Map::getPC(){
+    return pc;
+}
+
 GameObject Map::convertType(char c, int x, int y) {
     switch(c) {
         case '@':

@@ -56,7 +56,7 @@ export class Map {
         void init_state(std::string file_name);
 
         void debug();
-
+        Human* getPC();
         void reset();
         void init();
 
