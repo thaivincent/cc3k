@@ -17,8 +17,10 @@ int main(int argc, char* argv[]){
     cout << "Select a class:" << endl << "h = Human" << endl << "d = Dwarf" << endl << "e = Elf" << endl << "o = Orc"<< endl;
     cin >> cmd;
     if (cmd == "h"){
-        // Create and insert human into 
+        cout << "Human Selected" << endl;
     }
+    
+    map.generate();
 
     while (cin >> cmd){
         if (cmd == "q"){
