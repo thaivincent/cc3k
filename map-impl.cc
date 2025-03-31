@@ -143,7 +143,7 @@ void Map::init_state(string file_name){
             baseMap[i][j] = c;
             objectMap[i][j] = convertType(c, i, j);
             if (holds_alternative<Human>(objectMap[i][j])){
-                Human h = get<Human>(objectMap[i][j])
+                Human h = get<Human>(objectMap[i][j]);
                 pc = &h;
             }
             else if(holds_alternative<Tile>(objectMap[i][j]) ){
