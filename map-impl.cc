@@ -8,14 +8,13 @@ import <variant>;
 import tile;
 import info;
 import items;
-import stairs;
 import character;
 import enemy;
 import playablecharacter;
 import human;
 
 using namespace std;
-using GameObject = variant<Tile, Human, Stairs,Items, Enemy>;
+using GameObject = variant<Tile, Human,Items, Enemy>;
 
 void Map::reset(){
     objectMap.clear();

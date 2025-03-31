@@ -7,10 +7,11 @@ import <vector>;
 import <variant>;
 import tile;
 import info;
-import stairs;
 import character;
 import playablecharacter;
 import human;
+import enemy;
+import goblin
 
 //import gold;
 //import potion;
@@ -18,7 +19,7 @@ import human;
 
 
 
-using GameObject = std::variant<Tile, Human, Stairs,Items, Enemy>;
+using GameObject = std::variant<Tile, Human,Items, Enemy>;
 
 export class Map {
     const static int numRows = 25;

@@ -1,6 +1,11 @@
 module character;
-using namespace std;
+import<variant>;
 
+import playablecharacter;
+import human;
+import enemy;
+import goblin;
+using namespace std;
 void Character::set_map(Map* mp) {
     map = mp;
 }
@@ -33,14 +38,14 @@ void Character::attack(Direction Dir) {
     int targetY = info.y;
     
     switch(Dir) {
-        case 0: targetY++; break;  // North
-        case 1: targetY--; break;  // South
-        case 2: targetX--; break;  // West
-        case 3: targetX++; break;  // East
-        case 4: targetX++; targetY--; break;  // Northeast
-        case 5: targetX--; targetY--; break;  // Northwest
-        case 6: targetX++; targetY++; break;  // Southeast
-        case 7: targetX--; targetY++; break;  // Southwest
+        case Direction::NORTH: targetY++; break;  // North
+        case Direction::SOUTH: targetY--; break;  // South
+        case Direction::EAST: targetX--; break;  // West
+        case Direction::WEST: targetX++; break;  // East
+        case Direction::NORTHEAST: targetX++; targetY--; break;  // Northeast
+        case Direction::NORTHWEST: targetX--; targetY--; break;  // Northwest
+        case Direction::SOUTHEAST: targetX++; targetY++; break;  // Southeast
+        case Direction::SOUTHWEST: targetX--; targetY++; break;  // Southwest
     }
     
     
