@@ -1,8 +1,8 @@
 CXX=g++-14.2.0 
 CXXFLAGS=-std=c++20 -Wall -O -g -MMD -Werror=vla -fmodules-ts # use -MMD to generate dependencies
 SOURCES=subject.cc observer.cc statuseffect.cc info.cc item.cc gold.cc directions.cc character.cc  enemy.cc goblin.cc \
-        playablecharacter.cc region.cc tile.cc map.cc stairs.cc \
-		 human.cc    $(wildcard *-impl.cc) main.cc   # list of all .cc files in the current directory
+        playablecharacter.cc region.cc tile.cc human.cc map.cc stairs.cc \
+	    $(wildcard *-impl.cc) main.cc   # list of all .cc files in the current directory
 OBJECTS=${SOURCES:.cc=.o}  # .o files depend upon .cc files with same names
 DEPENDS=${OBJECTS:.o=.d}   # .d file is list of dependencies for corresponding .cc file
 EXEC=a4q2

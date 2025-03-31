@@ -64,9 +64,6 @@ int main(int argc, char* argv[]){
             }
 
         }
-        else{
-            cout<< "Command unknown, try again" << endl;
-        }
         else if (cmd == "no")
         {
             /* code */
@@ -127,6 +124,10 @@ int main(int argc, char* argv[]){
         else if (cmd == "no")
         {
             /* code */
+        }
+
+        else{
+            cout<< "Command unknown, try again" << endl;
         }
         
         

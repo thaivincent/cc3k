@@ -75,3 +75,5 @@ void Character::setDef(int def) {
 void Character::setHP(int hp) {
     health_stat = hp;
 }
+
+Character::~Character() {}
