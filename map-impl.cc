@@ -95,5 +95,7 @@ Map::~Map(){}
 
 void Map::init_state(string file_name){}
 
-
+void Map::incLevel() {
+    ++level;
+}
 
