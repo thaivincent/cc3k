@@ -4,7 +4,7 @@ import directions;
 using namespace std;
 
 export class Character {
-    private:
+    protected:
     int health_stat;
     int attack_stat;
     int defense_stat;

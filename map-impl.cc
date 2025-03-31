@@ -2,7 +2,7 @@ module map;
 import directions;
 
 using namespace std;
-using GameObject = variant<Tile>;
+using GameObject = variant<Tile, Human, Stairs,Items, Enemy>;
 
 void Map::reset(){
     objectMap.clear();
@@ -70,6 +70,11 @@ void Map::print() const {
                 Tile t = get<Tile>(obj);
                 cout << baseMap[t.getX()][t.getY()];
             }
+            else if (holds_alternative<Tile>(obj))
+            {
+                /* code */
+            }
+            
             else{
                 cout<<"?";
             }

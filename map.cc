@@ -24,7 +24,7 @@ using namespace std;
 //import goblin;
 
 
-using GameObject = std::variant<Tile>;
+using GameObject = std::variant<Tile, Human, Stairs,Items, Enemy>;
 
 export class Map {
     PC* main_character;
