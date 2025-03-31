@@ -24,19 +24,7 @@ int Character::getDefense() {
 }
 
 void Character::move(Direction Dir) {
-    if(Dir == 0){
-        if (holds_alternative<Tile>(map.gameMap[info.x][info.y + 1])){
-            Tile t = get<Tile>(map.gameMap[info.x][info.y + 1]);
-            if (t.type == 2){
-                swap(map.gameMap[info.x][info.y + 1],map.gameMap[info.x][info.y]);
-            }
-        }
-    }
-    else if (Dir == 1)
-    {
-        /* code */
-    }
-    
+    return;
 }
 
 void Character::attack(Direction Dir) {
