@@ -16,11 +16,22 @@ import tile;
 import human;
 import item;
 import goblin;
+import region;
+import directions;
+using namespace std;
+
+
+//import gold;
+//import potion;
+//import human;
+//import goblin;
 
 
 export using GameObject = std::variant<Tile, Human, Item, Goblin>;
 
 export class Map {
+    PC* main_character;
+    std::vector<Enemy*> enemies;
     const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
@@ -61,4 +72,13 @@ export class Map {
         void init();
 
 
+        void incLevel();
+        bool playerInRange(Info info);
+        Direction findDirection(Info info);
+        bool isWalkable(Direction Dir, Info info);
+        void findEnemy(Direction Dir, Info info);
+        void movePlayer(Direction Dir);
+        bool attackRandomizer();
+        void playerAttack(Direction Dir);
+            
 };

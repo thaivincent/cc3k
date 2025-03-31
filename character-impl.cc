@@ -1,16 +1,12 @@
 module character;
 using namespace std;
 
-void Character::set_map(Map* mp) {
-    map = mp;
-}
-
-void Character::set_info(const Info& i){
-    info = i;
-}
-
 Character::Character(int hp, int atk, int def, int g, int x, int y): 
         health_stat(hp), attack_stat(atk), defense_stat(def), gold(g), info{x,y} {}
+
+int Character::setHealth(int hp) {
+    health_stat = hp;
+}
 
 int Character::getHealth() {
     return health_stat;
@@ -24,12 +20,43 @@ int Character::getDefense() {
     return defense_stat;
 }
 
-void Character::move(Direction Dir) {
-    return;
+void Character::move( Direction Dir ) {
+    switch(Dir){
+        case Direction::NORTH:
+            info.y++;
+            break;
+        case Direction::SOUTH:
+            info.y--;
+            break;
+        case Direction::WEST:
+            info.x--;
+            break;
+        case Direction::EAST:
+            info.x++;
+            break;
+        case Direction::SOUTHWEST:
+            info.y--;
+            info.x--;
+            break;
+        case Direction::SOUTHEAST:
+            info.y--;
+            info.x++;
+            break;
+        case Direction::NORTHWEST:
+            info.y++;
+            info.x--;
+            break;
+        case Direction::NORTHEAST:
+            info.y++;
+            info.x++;
+            break;
+    }
+
+    
 }
 
 void Character::attack(Direction Dir) {
-    return;
+
 }
 
 Info Character::getInfo() {

@@ -38,3 +38,7 @@ int Tile::getX(){
 int Tile::getY(){
     return info.y;
 }
+
+TileType Tile::getTileType() {
+    return t;
+}

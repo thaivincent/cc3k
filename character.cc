@@ -3,8 +3,6 @@ import info;
 import directions;
 using namespace std;
 
-class Map;
-
 export class Character {
     protected:
     int health_stat;
@@ -12,18 +10,17 @@ export class Character {
     int defense_stat;
     int gold;
     Info info;
-    Map* map;
 
     public:
     Character(int hp, int atk, int def, int g, int x, int y);
     Info getInfo();
-    void set_map(Map* mp);
-    void set_info(const Info& i);
     void move( Direction Dir );
     void attack( Direction Dir );
-    int getHealth();
-    int getAttack();
-    int getDefense();
+    virtual int setHealth(int hp);
+    virtual int getHealth();
+    virtual int getAttack();
+    virtual int getDefense();
+    virtual ~Character();
     
     void setGold(int g);
     void setAtk(int atk);
