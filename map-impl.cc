@@ -124,3 +124,10 @@ Map::~Map(){}
 
 void Map::init_state(string file_name){}
 
+<<<<<<< HEAD
+=======
+void Map::incLevel() {
+    ++level;
+}
+
+>>>>>>> compiled_code_1

@@ -22,14 +22,13 @@ import PC;
 using GameObject = std::variant<Tile>;
 
 export class Map {
-    const static int numRows = 30;
+    const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
     // 2D vector of smart pointers
     std::vector<std::vector<GameObject>> objectMap;
     int level = 1;
     unsigned seed;
-    void reset();
     // For our generation functions, each one except generatePlayer will take in a vector containing all of the valid coordinates of a particular room 
     //  and insert the appropriate item inside of the objectMap
     void generatePlayer();
@@ -48,11 +47,16 @@ export class Map {
     //Ctor and Dtor
         Map();
         ~Map();
+
     
         void print() const;
         void tick();
-        void init();
         void init_state(std::string file_name);
 
         void debug();
+
+        public:
+            void incLevel();
+            void reset();
+            void init();
 };
