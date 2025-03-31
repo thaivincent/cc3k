@@ -142,11 +142,9 @@ void Map::init_state(string file_name){
             ss >> std::noskipws >> c;
             baseMap[i][j] = c;
             objectMap[i][j] = convertType(c, i, j);
-            if (baseMap[i][j] == '@') {
-                auto& obj = objectMap[i][j];
-                if (auto* human = std::get_if<Human>(&obj)) {
-                    pc = human;
-                }
+            if (holds_alternative<Human>(objectMap[i][j])){
+                Human h = get<Human>(objectMap[i][j])
+                pc = &h;
             }
             else if(holds_alternative<Tile>(objectMap[i][j]) ){
                 auto& obj = objectMap[i][j];
