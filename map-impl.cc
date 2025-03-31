@@ -178,6 +178,10 @@ Direction Map::findDirection(Info info) {
     return Direction::NORTH;
 }
 
+Info Map::attackDirection(Direction Dir) {
+    if ()
+}
+
 bool Map::isWalkable(Direction Dir, Info info) {
     switch(Dir){
         case Direction::NORTH:

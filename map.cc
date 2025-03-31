@@ -67,8 +67,10 @@ export class Map {
             void reset();
             void init();
             bool playerInRange(Info info);
+            Info attackDirection(Direction Dir)
             Direction findDirection(Info info);
             bool isWalkable(Direction Dir, Info info);
             void movePlayer(Direction Dir);
+            void playerAttack(Direction Dir);
             
 };

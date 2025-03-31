@@ -15,7 +15,7 @@ export class Character {
     Character(int hp, int atk, int def, int g, int x, int y);
     Info getInfo();
     void move( Direction Dir );
-    virtual void attack( Direction Dir );
+    void attack( Direction Dir );
     virtual int getHealth();
     virtual int getAttack();
     virtual int getDefense();
