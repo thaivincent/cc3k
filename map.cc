@@ -17,7 +17,7 @@ import info;
 using GameObject = std::variant<Tile>;
 
 export class Map {
-    const static int numRows = 30;
+    const static int numRows = 25;
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
     // 2D vector of smart pointers
