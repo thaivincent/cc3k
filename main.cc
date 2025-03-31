@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
         string file_name = argv[1];
         map.init_state(file_name);
     }
-    else {map.init();}
+    else {cout<< "error, should init random generation" << endl;}
 
     string cmd;
     while (cin >> cmd){
