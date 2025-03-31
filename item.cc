@@ -3,10 +3,11 @@ import info;
 using namespace std;
 
 export class Item {
-    int x;
-    int y;
+    Info info;
 
     public:
-        virtual Info getInfo() = 0;
-        virtual void onPickup() = 0;
+        Item(Info i);
+    // Should be pure virtual, allowing instances of Item
+       // virtual Info getInfo() = 0 ;
+      //  virtual void onPickup() = 0;
 };

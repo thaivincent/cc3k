@@ -18,6 +18,7 @@ export class Character {
     Character(int hp, int atk, int def, int g, int x, int y);
     Info getInfo();
     void set_map(Map* mp);
+    void set_info(const Info& i);
     virtual void move( Direction Dir );
     virtual void attack( Direction Dir );
     virtual int getHealth();

@@ -11,10 +11,13 @@ import <chrono>;
 import tile;
 import info;
 import region;
-//import PC;
+import character;
+import playablecharacter;
+import human;
+import item;
 
 using namespace std;
-using GameObject = variant<Tile>;
+using GameObject = variant<Tile, PC, Item, Enemy, Stairs>;
 
 void Map::reset(){
     objectMap.clear();
@@ -40,9 +43,9 @@ Info Map::coordSelect(vector<Info> room){
 
 // Generation functions
 
-/*
+
 // Generates the stair and PC
-vector<vector<Info>>& Map::generateUnique(unique_ptr<PC> pc){
+void Map::generate(){
     vector<vector<Info>> rooms = defaultRooms();
     vector<Info> PC_room = roomSelect(rooms);
     // Temporarily pop PC_room from room list
@@ -53,26 +56,52 @@ vector<vector<Info>>& Map::generateUnique(unique_ptr<PC> pc){
     // Pop 2 coordinates from the 2 selected rooms
     Info s_coord = coordSelect(s_room);
     Info PC_coord = coordSelect(PC_room);
-
+    GameObject pc {Human{PC_coord.x,PC_coord.y}};
+    
     // Push back PC_room to room list.
     rooms.push_back(PC_room); 
     
     
-    // Transfers ownership to the gameMap
-    gameMap[PC_coord.x][PC_coord.y] = std::move(*pc);
+    objectMap[PC_coord.x][PC_coord.y] = pc;
 
     // Create a Stair GameObject and insert into gameMap:
-        
+        //To-do:
 
-    return &rooms;
-}
-
-vector<vector<Info>>& Map::generatePotions(vector<vector<Info>>& rooms){
     const static int MAX_FLOOR_ITEMS = 10;
+    const static int MAX_FLOOR_GOLD = 10;
+    const static int MAX_FLOOR_ENEMY = 20;
+    // vector<string> potList = {"RH", "BA", "BD", "PH", "WA", "WD"};
+    for (int i = 0; i < MAX_FLOOR_ITEMS; i++){
+        /*
+        // Randomize and create a random potion
+        shuffle(potList.begin(), potList.end(),rng);
+        string potion = potList.back();
+        */
+        vector<Info> potRoom = roomSelect(rooms);
+        Info potCoords = coordSelect(potRoom);
+        
+        objectMap[potCoords.x][potCoords.y] = GameObject{Item{potCoords}};
+        
+    }
+
+    for (int i = 0; i < MAX_FLOOR_GOLD; i++){
+        vector<Info> goldRoom = roomSelect(rooms);
+        Info goldCoords = coordSelect(goldRoom);
+        objectMap[goldCoords.x][goldCoords.y] = GameObject{Item{goldCoords}};
+        
+    }
+    
+    /*
+    for (int i = 0; i < MAX_FLOOR_ENEMY; i++){
+        vector<Info> enemyRoom = roomSelect(rooms);
+        Info enemyCoords = coordSelect(enemyRoom);
+        gameMap[enemyCoords.x][enemyCoords.y] = GameObject{Enemy{enemyCoords}};
+        
+    }
+    */
 
 
 }
-    */
 
 void Map::print() const {
     for (auto row: objectMap){
@@ -81,6 +110,14 @@ void Map::print() const {
                 // Convert to a tile
                 Tile t = get<Tile>(obj);
                 cout << baseMap[t.getX()][t.getY()];
+            }
+            else if (holds_alternative<PC>(obj))
+            {
+                cout << "@";
+            }
+            else if (holds_alternative<Item>(obj))
+            {
+                cout<< "I";
             }
             else{
                 cout<<"?";
@@ -92,10 +129,6 @@ void Map::print() const {
 }
 
 void Map::debug(){
-    vector<vector<Info>> rooms = defaultRooms();
-    vector<Info> room = roomSelect(rooms);
-    Info coord = coordSelect(room);
-    cout << coord;
 }
 
 void Map::init(){   

@@ -5,6 +5,10 @@ void Character::set_map(Map* mp) {
     map = mp;
 }
 
+void Character::set_info(const Info& i){
+    info = i;
+}
+
 Character::Character(int hp, int atk, int def, int g, int x, int y): 
         health_stat(hp), attack_stat(atk), defense_stat(def), gold(g), info{x,y} {}
 

@@ -8,9 +8,11 @@ import <variant>;
 import <algorithm>;
 import <random>;
 import <chrono>;
+import playablecharacter;
 import tile;
 import info;
 import region;
+import item;
 
 //import gold;
 //import potion;
@@ -18,7 +20,7 @@ import region;
 //import goblin;
 
 
-using GameObject = std::variant<Tile>;
+using GameObject = std::variant<Tile, PC, Item, Enemy, Stairs>;
 
 export class Map {
     const static int numRows = 25;
@@ -35,6 +37,8 @@ export class Map {
     void generatePotions(std::vector<std::vector<Info>>& room);
     void generateGold(std::vector<std::vector<Info>>& room);
     void generateEnemies(std::vector<std::vector<Info>>& room);
+    // For our generation functions, will procedurely generate characters, stairs, items, and enemies in that order
+
 
     // Helpers:
     // Takes in a vector of rooms/coordinates, pops a random element and returns
@@ -46,8 +50,7 @@ export class Map {
     //Ctor and Dtor
         Map();
         ~Map();
-
-    
+        void generate();
         void print() const;
         void tick();
         void init_state(std::string file_name);
