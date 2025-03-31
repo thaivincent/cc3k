@@ -2,6 +2,7 @@ import <fstream>;
 import <iostream>; 
 import <string>;
 import map;
+import directions;
 using namespace std;
 
 int main(int argc, char* argv[]){
@@ -27,66 +28,61 @@ int main(int argc, char* argv[]){
         }
         else if (cmd == "no")
         {
-            /* code */
+            map.pc.move(Direction::NORTH);
         }
         else if (cmd == "so")
         {
-            /* code */
+            map.pc.move(Direction::SOUTH);
         }
         
         else if (cmd == "ea")
         {
-            /* code */
+            map.pc.move(Direction::EAST);
         }
 
         else if (cmd == "we")
         {
-            /* code */
+            map.pc.move(Direction::WEST);
         }
         
         else if (cmd == "ne")
         {
-            /* code */
+            map.pc.move(Direction::NORTHEAST);
         }
     
         else if (cmd == "nw")
         {
-            /* code */
+            map.pc.move(Direction::NORTHWEST);
         }
         
         else if (cmd == "se")
         {
-            /* code */
+            map.pc.move(Direction::SOUTHEAST);
         }
         
         else if (cmd == "sw")
         {
-            /* code */
+            map.pc.move(Direction::SOUTHWEST);
         }
         
         else if (cmd == "a")
         {
             cin >> cmd;
             switch(cmd){
-                case("no"): map.
-                case("so"):
-                case("ea"):
-                case("we"):
-                case("ne"):
-                case("nw"):
-                case("se"):
-                case("sw"):
-                
+                case("no"): map.pc.attack(Direction::NORTH); break; 
+                case("so"): map.pc.attack(Direction::SOUTH); break;
+                case("ea"): map.pc.attack(Direction::EAST); break;
+                case("we"): map.pc.attack(Direction::WEST); break;
+                case("ne"): map.pc.attack(Direction::SOUTHEAST); break;
+                case("nw"): map.pc.attack(Direction::SOUTHWEST); break;
+                case("se"): map.pc.attack(Direction::NORTHEAST); break;
+                case("sw"): map.pc.attack(Direction::NORTHWEST); break
             }
 
         }
-        
-        else if (cmd == "no")
-        {
-            /* code */
+        else{
+            cout<< "Command unknown, try again" << endl;
         }
-        
-        
 
     }
 }

@@ -25,7 +25,7 @@ export class Map {
     const static int numCols = 79;
     std::vector<std::vector<char>> baseMap;
     std::vector<std::vector<GameObject>> objectMap;
-    Human pc;
+    Human& pc;
     int level = 1;
 
     public:
