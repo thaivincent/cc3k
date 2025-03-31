@@ -260,6 +260,8 @@ bool Map::isWalkable(Direction Dir, Info info) {
 void Map::movePlayer(Direction Dir) {
     if (isWalkable(Dir, main_character->getInfo())) {
         main_character->move(Dir);
+
+        
     }
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {

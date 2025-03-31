@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
                 // Handle invalid input
                 std::cout << "Invalid direction!" << std::endl;
             }
-            map.print()
+            map.print();
 
         }
         else if (cmd == "no")
