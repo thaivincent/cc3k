@@ -370,6 +370,7 @@ void Map::playerAttack(Direction Dir) {
         cerr << "Error: main_character is not initialized." << endl;
         return;
     }
+    
     findEnemy(Dir, main_character->getInfo());
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
