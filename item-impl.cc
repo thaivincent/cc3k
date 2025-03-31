@@ -1,4 +1,4 @@
 module item;
 import info;
 
-Item::Item(Info i):info{i}{}
+Item::Item(int x, int y): x{x}, y{y} {}

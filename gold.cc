@@ -8,6 +8,4 @@ export class Gold: public Item {
     static const int value = 1;
     public:
         int getValue();
-        Info getInfo() override;
-        void onPickup() override;
 };

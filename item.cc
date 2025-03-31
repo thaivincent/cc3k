@@ -1,12 +1,13 @@
 export module item;
-import info;
+
 using namespace std;
 
 export class Item {
-    Info info;
+    int x;
+    int y;
 
     public:
-        Item(Info i);
+        Item(int x, int y);
     // Should be pure virtual, allowing instances of Item
        // virtual Info getInfo() = 0 ;
       //  virtual void onPickup() = 0;

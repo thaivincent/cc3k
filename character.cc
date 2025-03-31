@@ -26,4 +26,8 @@ export class Character {
     virtual int getDefense();
     virtual ~Character();
     
+    void setGold(int g);
+    void setAtk(int atk);
+    void setDef(int def);
+    void setHP(int hp);
 };

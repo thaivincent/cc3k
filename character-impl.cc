@@ -36,4 +36,17 @@ Info Character::getInfo() {
     return info;
 }
 
+void Character::setGold(int g) {
+    gold = g;
+}
+void Character::setAtk(int atk) {
+    attack_stat = atk;
+}
+void Character::setDef(int def) {
+    defense_stat = def;
+}
+void Character::setHP(int hp) {
+    health_stat = hp;
+}
+
 Character::~Character() {}

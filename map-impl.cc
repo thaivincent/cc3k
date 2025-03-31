@@ -17,7 +17,7 @@ import human;
 import item;
 
 using namespace std;
-using GameObject = variant<Tile, PC, Item, Enemy, Stairs>;
+using GameObject = variant<monostate, Tile, PC, Item, Enemy>;
 
 void Map::reset(){
     objectMap.clear();
@@ -168,9 +168,99 @@ Map::Map(){
 
 Map::~Map(){}
 
-void Map::init_state(string file_name){}
-
 void Map::incLevel() {
     ++level;
 }
 
+void Map::init_state(string file_name){
+
+    baseMap.resize(numRows, vector<char>(numCols));
+    objectMap.resize(numRows, vector<GameObject>(numCols));
+    ifstream file{file_name};
+    string line;
+    char c;
+    for(int i = 0; i < numRows; i++){
+        getline(file,line);
+        stringstream ss(line);
+        for(int j = 0; j < numCols; j++){
+            ss >> std::noskipws >> c;
+            baseMap[i][j] = c;
+            objectMap[i][j] = *(convertType(c, i, j));
+            if (baseMap[i][j] == '@') {
+                pc = &(objectMap[i][j]);
+            }
+        }
+    }
+    int stat;
+    for (int i = 0; i < 4; ++i) {
+        file >> stat;
+        if (i == 0) {
+            pc->setGold(stat);
+        }
+        else (if i == 1) {
+            pc->setHP(stat);
+        }
+        else (if i == 2) {
+            pc->setAtk(stat);
+        }
+        else (if i == 2) {
+            pc->setDef(stat);
+        }
+    }
+}
+
+GameObject Map::convertType(char c, int x, int y) {
+    switch(c) {
+        case '@':
+            return  new GameObject{PC{x, y}};
+            break;
+        case 'V':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'W':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'M':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'N':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'D':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'X':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'T':
+            return new GameObject{Enemy{70, 5, 10, 1, x, y}};
+            break;
+        case 'P':
+            return new GameObject{Item{x, y}};
+            break;
+        case 'G':
+            return new GameObject{Item{x, y}};
+            break;
+        case 'C':
+            return new GameObject{Item{x, y}};
+            break;
+        case 'B':
+            return new GameObject{Item{x, y}};
+            break;
+        case '|':
+            return new GameObject{Tile{x, y, c}}
+            break;
+        case '.':
+            return new GameObject{Tile{x, y, c}}
+            break;
+        case '-':
+            return new GameObject{Tile{x, y, c}}
+            break;
+        case '+':
+            return new GameObject{Tile{x, y, c}}
+            break;
+        case '#':
+            return new GameObject{Tile{x, y, c}}
+            break;
+    }
+}

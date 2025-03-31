@@ -13,6 +13,7 @@ export class Tile {
     //Ctor
         Tile() = default;
         Tile(int x, int y);
+        Tile(int x, int y, char c);
     //Accessors
         int getX();
         int getY();
