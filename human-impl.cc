@@ -6,3 +6,4 @@ Human::Human(int x, int y):
 void Human::incGold(Gold g) {
     gold += g.getValue();
 }
+

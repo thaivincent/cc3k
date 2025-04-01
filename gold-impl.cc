@@ -4,3 +4,4 @@ int Gold::getValue() {
     return value;
 }
 
+

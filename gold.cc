@@ -9,3 +9,4 @@ export class Gold: public Item {
     public:
         int getValue();
 };
+

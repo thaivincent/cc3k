@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+iostream fstream vector sstream string variant algorithm chrono cstddef random stdexcept
+=======
 iostream
 fstream
 vector
@@ -9,3 +12,4 @@ chrono
 cstddef 
 random
 stdexcept
+>>>>>>> 671349ca9775110e0e54527fe7b63ba01405dd2f

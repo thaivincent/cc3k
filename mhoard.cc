@@ -6,3 +6,4 @@ using namespace std;
 export class MHoard: public Gold {
     
 };
+

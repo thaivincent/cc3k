@@ -84,3 +84,4 @@ export class Map {
         void playerAttack(Direction Dir);
             
 };
+

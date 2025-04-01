@@ -22,3 +22,4 @@ export class Tile {
         TileType getTileType();
         
 };
+

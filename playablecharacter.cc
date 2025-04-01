@@ -11,3 +11,4 @@ export class PC: public Character {
     Character(hp, atk, def, g, x, y), hasBS(false) {}
    
 };
+
