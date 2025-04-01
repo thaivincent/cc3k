@@ -66,10 +66,11 @@ int main(int argc, char* argv[]){
                 cout << "Game Over!"<<endl;
                 break;
             }
-            map.print();
         }
         else{
             cout<< "Command unknown, try again" << endl;
         }
+
+        map.print();
     }
 }

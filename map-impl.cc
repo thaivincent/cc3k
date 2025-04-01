@@ -144,7 +144,7 @@ void Map::init_state(string file_name){
             objectMap[i][j] = convertType(c, i, j);
             if (holds_alternative<Human>(objectMap[i][j])){
                 Human h = get<Human>(objectMap[i][j]);
-                pc = &h;
+                main_character = &h;
             }
             else if(holds_alternative<Tile>(objectMap[i][j]) ){
                 auto& obj = objectMap[i][j];
@@ -202,56 +202,56 @@ Direction Map::findDirection(Info info) {
 
 
 bool Map::isWalkable(Direction Dir, Info info) {
-    switch(Dir){
-        case Direction::NORTH:
-            info.y++;
-            break;
-        case Direction::SOUTH:
-            info.y--;
-            break;
-        case Direction::WEST:
-            info.x--;
-            break;
-        case Direction::EAST:
-            info.x++;
-            break;
-        case Direction::SOUTHWEST:
-            info.y--;
-            info.x--;
-            break;
-        case Direction::SOUTHEAST:
-            info.y--;
-            info.x++;
-            break;
-        case Direction::NORTHWEST:
-            info.y++;
-            info.x--;
-            break;
-        case Direction::NORTHEAST:
-            info.y++;
-            info.x++;
-            break;
-    }
+    // switch(Dir){
+    //     case Direction::NORTH:
+    //         info.y++;
+    //         break;
+    //     case Direction::SOUTH:
+    //         info.y--;
+    //         break;
+    //     case Direction::WEST:
+    //         info.x--;
+    //         break;
+    //     case Direction::EAST:
+    //         info.x++;
+    //         break;
+    //     case Direction::SOUTHWEST:
+    //         info.y--;
+    //         info.x--;
+    //         break;
+    //     case Direction::SOUTHEAST:
+    //         info.y--;
+    //         info.x++;
+    //         break;
+    //     case Direction::NORTHWEST:
+    //         info.y++;
+    //         info.x--;
+    //         break;
+    //     case Direction::NORTHEAST:
+    //         info.y++;
+    //         info.x++;
+    //         break;
+    // }
 
-    if (info.x < 0 || info.x >= numRows || info.y < 0 || info.y >= numCols) {
-        return false;
-    }
+    // if (info.x < 0 || info.x >= numRows || info.y < 0 || info.y >= numCols) {
+    //     return false;
+    // }
 
-    Tile tile = get<Tile>(objectMap[info.x][info.y]);
-    if (tile.getTileType() == TileType::VWall ||
-        tile.getTileType() == TileType::HWall) {
-        return false;
-    } 
+    // Tile tile = get<Tile>(objectMap[info.x][info.y]);
+    // if (tile.getTileType() == TileType::VWall ||
+    //     tile.getTileType() == TileType::HWall) {
+    //     return false;
+    // } 
 
-    for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
-        if (enemies[i]->getInfo().x == info.x && enemies[i]->getInfo().y == info.y) {
-            return false;
-        }
-    }
+    // for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {
+    //     if (enemies[i]->getInfo().x == info.x && enemies[i]->getInfo().y == info.y) {
+    //         return false;
+    //     }
+    // }
 
-    if (info.x == main_character->getInfo().x && info.y == main_character->getInfo().y) {
-        return false;
-    }
+    // if (info.x == main_character->getInfo().x && info.y == main_character->getInfo().y) {
+    //     return false;
+    // }
 
     return true;
 
@@ -265,15 +265,24 @@ void Map::movePlayer(Direction Dir) {
     }
 
     if (isWalkable(Dir, main_character->getInfo())) {
+        cout << main_character->getInfo().x << endl;
+        cout << main_character->getInfo().x << endl;
+
         Info temp = main_character->getInfo();
         main_character->move(Dir);
         Info new_pos = main_character->getInfo();
+
+        cout << "----" << endl;
+
+        cout << main_character->getInfo().x << endl;
+        cout << main_character->getInfo().x << endl;
 
         if(new_pos.x < 0 || new_pos.x >= numRows || new_pos.y < 0 || new_pos.y >= numCols) {
             return;
         }
 
         swap(objectMap[temp.x][temp.y], objectMap[new_pos.x][new_pos.y]);
+
         Tile t = get<Tile>(objectMap[temp.x][temp.y]);
         t.modX(temp.x);
         t.modY(temp.y);
@@ -370,7 +379,7 @@ void Map::playerAttack(Direction Dir) {
         cerr << "Error: main_character is not initialized." << endl;
         return;
     }
-    
+
     findEnemy(Dir, main_character->getInfo());
 
     for (int i = 0; i < static_cast<int>(enemies.size()); ++i) {

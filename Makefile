@@ -1,21 +1,26 @@
-CXX=g++-14.2.0 
-CXXFLAGS=-std=c++20 -Wall -O -g -MMD -Werror=vla -fmodules-ts # use -MMD to generate dependencies
-SOURCES=subject.cc observer.cc statuseffect.cc info.cc item.cc gold.cc directions.cc character.cc  enemy.cc goblin.cc \
-        playablecharacter.cc region.cc tile.cc human.cc map.cc stairs.cc \
-	    $(wildcard *-impl.cc) main.cc   # list of all .cc files in the current directory
-OBJECTS=${SOURCES:.cc=.o}  # .o files depend upon .cc files with same names
-DEPENDS=${OBJECTS:.o=.d}   # .d file is list of dependencies for corresponding .cc file
-EXEC=a4q2
+CXX = g++-14.2.0
+CXXFLAGS = -std=c++20 -fmodules-ts -Wall -g
 
-# First target in the makefile is the default target.
-$(EXEC): $(OBJECTS)
+
+SOURCES = subject.cc observer.cc statuseffect.cc info.cc item.cc gold.cc directions.cc character.cc enemy.cc goblin.cc \
+          playablecharacter.cc region.cc tile.cc human.cc map.cc stairs.cc $(wildcard *-impl.cc) main.cc
+OBJECTS = $(SOURCES:.cc=.o)
+DEPENDS = $(OBJECTS:.o=.d)
+EXEC = cck3+
+
+all: $(EXEC)
+
+$(PCM): $(MODULE_INTERFACE)
+	$(CXX) $(CXXFLAGS) -x c++-module-interface $(MODULE_INTERFACE) -o $(PCM)
+
+$(EXEC): $(PCM) $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(EXEC)
 
-%.o: %.cc 
-	$(CXX) -c $< -o $@ $(CXXFLAGS) 
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
--include ${DEPENDS}
+-include $(DEPENDS)
 
 .PHONY: clean
 clean:
-	rm  -f $(OBJECTS) $(DEPENDS) $(EXEC)
+	rm -f $(OBJECTS) $(DEPENDS) $(EXEC) $(PCM)
